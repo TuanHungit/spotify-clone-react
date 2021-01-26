@@ -1,4 +1,8 @@
 node_modules
-build
-.DS_Store
+node-sass
 .vscode
+debug.log
+public/*
+!public/fonts
+!public/svg
+!public/images
