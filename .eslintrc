@@ -10,10 +10,7 @@
     "node": true,
     "browser": true
   },
-  "plugins": [
-    "babel",
-    "react"
-  ],
+  "plugins": ["babel", "react"],
   "rules": {
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",

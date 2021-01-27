@@ -20,7 +20,6 @@ const env = app.get("env");
 if (env === "production") {
   app.use(
     morgan("common", {
-      // skip: (req, res) => res.statusCode < 400,
       stream: path.resolve(__dirname, "/../morgan.log"),
     })
   );

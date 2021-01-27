@@ -1,16 +1,17 @@
 // Add the root project directory to the app module search path
-require("app-module-path").addPath(__dirname);
-
-const path = require("path");
+require('app-module-path').addPath(__dirname);
+const api = require('./routes/api');
+const path = require('path');
 
 module.exports = function (app) {
-  app.get("*", (req, res) => {
-    console.log(__dirname, "../public/index.html");
-    res.sendFile(path.resolve(__dirname, "../public/index.html"));
+  app.use('/api', api);
+  app.get('*', (req, res) => {
+    console.log(__dirname, '../public/index.html');
+    res.sendFile(path.resolve(__dirname, '../public/index.html'));
   });
   // development error handler
   // will print stacktrace
-  if (app.get("env") === "development") {
+  if (app.get('env') === 'development') {
     app.use((err, req, res, next) => {
       res.status(err.status || 500);
       if (err.errors) {
@@ -28,7 +29,7 @@ module.exports = function (app) {
     if (err.errors && Object.keys(err.errors).length) {
       res.json({
         error: true,
-        errors: err.errors || {},
+        errors: err.errors || {}
       });
     } else {
       res.send(err.message);
