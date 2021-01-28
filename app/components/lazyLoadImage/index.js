@@ -34,8 +34,8 @@ export default function LazyImage({ src, alt }) {
             });
           },
           {
-            threshold: 0.01,
-            rootMargin: '75%'
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
           }
         );
         observer.observe(imageRef);

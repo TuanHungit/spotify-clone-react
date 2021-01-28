@@ -4,8 +4,9 @@ export const Container = styled.div``;
 
 export const Inner = styled.ul`
   display: flex;
-  flex-direction: column;
   max-width: 670px;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export const Item = styled.li`
