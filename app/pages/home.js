@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actionCreator from '../actions';
+import styled from 'styled-components/macro';
+const Header = styled.h1``;
 const Home = ({ tracks, onFetchTracks }) => {
   useEffect(() => {
     onFetchTracks(1);
   }, []);
 
   console.log(tracks);
-  return <div>Hello</div>;
+  return <Header>Hello</Header>;
 };
 
 const mapStateToProps = state => {
