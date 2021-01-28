@@ -13,7 +13,8 @@ const Home = ({ tracks, onFetchTracks }) => {
 const mapStateToProps = state => {
   return {
     tracks: state.tracksState.tracks,
-    isLoading: state.tracksState.isLoading
+    isLoading: state.tracksState.isLoading,
+    isFading: state.uiState.isFading
   };
 };
 const mapDispatchToProps = dispatch => {
