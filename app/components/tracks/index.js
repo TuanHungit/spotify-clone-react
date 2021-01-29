@@ -10,8 +10,7 @@ import {
   Other,
   Order,
   Group,
-  LinksByComma,
-  Download
+  LinksByComma
 } from './styles/tracks';
 export default function Tracks({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
@@ -70,6 +69,7 @@ Tracks.LinksByComma = function TracksLinksByComma({
     </Tracks.Group>
   );
 };
+
 Tracks.Download = function TracksDownload({ children, ...restProps }) {
   return <Download {...restProps}>{children}</Download>;
 };

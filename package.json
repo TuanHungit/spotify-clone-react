@@ -37,6 +37,7 @@
     "eslint-plugin-import": "^1.14.0",
     "eslint-plugin-jsx-a11y": "^2.2.0",
     "eslint-plugin-react": "^6.2.0",
+    "file-loader": "^6.2.0",
     "globby": "^6.1.0",
     "html-webpack-plugin": "^2.29.0",
     "node-sass": "^4.5.2",
@@ -52,6 +53,9 @@
     "webpack-dev-server": "^2.4.1"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "app-module-path": "^2.2.0",
     "axios": "^0.16.2",
     "babel-loader": "^7.0.0",

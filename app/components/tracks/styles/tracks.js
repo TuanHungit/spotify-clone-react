@@ -2,9 +2,13 @@ import styled from 'styled-components/macro';
 import { Link as ReactRouterLink } from 'react-router';
 export const Container = styled.div`
   min-height: 200px;
-  width: 50%;
-
+  width: 82%;
   padding-bottom: 100px;
+  float: right;
+  color: white;
+  @media (max-width: 1000px) {
+    font-size: 12px;
+  }
 `;
 
 export const Inner = styled.ul`
@@ -17,21 +21,34 @@ export const Inner = styled.ul`
 export const Item = styled.li`
   display: flex;
   flex-direction: row;
-
   align-items: center;
   justify-content: space-between;
   height: 80px;
   margin-bottom: 10px;
   font-size: 14px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease-in-out;
   &:hover {
     cursor: pointer;
   }
+
+  @media (max-width: 1000px) {
+    font-size: 12px;
+  }
 `;
 
-export const Actions = styled.div``;
+export const Actions = styled.div`
+  width: 100%;
+`;
 
-export const ActionInner = styled.div``;
+export const ActionInner = styled.div`
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 
 export const Share = styled.button``;
 
@@ -60,5 +77,3 @@ export const Group = styled.div`
   justify-content: ${({ direction }) =>
     direction === 'column' ? 'flex-start' : 'space-between'};
 `;
-
-export const Download = styled.button``;

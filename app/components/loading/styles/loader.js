@@ -1,13 +1,19 @@
 import styled from 'styled-components/macro';
 
-export const Loader = styled.svg`
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
+export const Item = styled.svg`
   animation: rotate 1s linear infinite;
   margin: 40px;
   width: 50px;
   height: 50px;
   text-align: center;
   & .path {
-    stroke: #5652bf;
+    stroke: #3eb4bf;
     stroke-linecap: round;
     animation: dash 1.5s ease-in-out infinite;
   }

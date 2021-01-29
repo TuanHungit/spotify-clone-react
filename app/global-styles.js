@@ -6,11 +6,17 @@ export const GlobalStyles = createGlobalStyle`
         padding: 0;
     }
     html, body {
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        background-color: white;
-        color: #333333;
-        font-size: 16px;
+        
+    }
+    #app {
+        height: 100vh;
+        background: #131313;
+        display: flex;
+        flex-direction: row;
     }
 `;

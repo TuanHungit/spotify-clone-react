@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faDownload,
+  faShare,
+  faEllipsisH
+} from '@fortawesome/free-solid-svg-icons';
 import { Tracks, LazyLoad, Loader, LinksByComma } from '../components';
 import InfiniteScroll from '../HOC/infiniteScroll';
 
@@ -15,7 +20,7 @@ const HomeContainer = ({ tracks, isFading, isLoading }) => {
               <LazyLoad src={el.thumbnail} alt="Thumbnail" size={60} />
             </Tracks.Group>
             <Tracks.Group size={85}>
-              <Tracks.Group size={70} direction="column">
+              <Tracks.Group size={80} direction="column">
                 <Tracks.Title>{el.name}</Tracks.Title>
                 <LinksByComma
                   artists={el.artists}
@@ -27,27 +32,30 @@ const HomeContainer = ({ tracks, isFading, isLoading }) => {
                   pathEntry="link"
                 />
               </Tracks.Group>
-
-              <Tracks.Actions>
-                <Tracks.ActionInner>
-                  <Tracks.Download>Download</Tracks.Download>
-                  <Tracks.Share>Share</Tracks.Share>
-                  <Tracks.Share>...</Tracks.Share>
-                </Tracks.ActionInner>
-              </Tracks.Actions>
+              <Tracks.Group size={20}>
+                <Tracks.Actions>
+                  <Tracks.ActionInner>
+                    <FontAwesomeIcon icon={faDownload} color="#27ded5" />
+                    <FontAwesomeIcon icon={faShare} color="#58d68d" />
+                    <FontAwesomeIcon icon={faEllipsisH} color="gray" />
+                  </Tracks.ActionInner>
+                </Tracks.Actions>
+              </Tracks.Group>
             </Tracks.Group>
           </Tracks.Item>
         ))}
         {isLoading && (
-          <Loader viewBox="0 0 50 50">
-            <circle
-              className="path"
-              cx="25"
-              cy="25"
-              r="20"
-              fill="none"
-              strokeWidth="3"
-            />
+          <Loader>
+            <Loader.Item viewBox="0 0 50 50">
+              <circle
+                className="path"
+                cx="25"
+                cy="25"
+                r="20"
+                fill="none"
+                strokeWidth="3"
+              />
+            </Loader.Item>
           </Loader>
         )}
       </Tracks.Inner>

@@ -7,9 +7,11 @@ import store from './store';
 import routes from './routes';
 import history from './history';
 import { GlobalStyles } from './global-styles';
+import Nav from './containers/nav';
 render(
   <React.Fragment>
     <GlobalStyles />
+    <Nav />
     <Provider store={store}>
       <Router
         history={history}

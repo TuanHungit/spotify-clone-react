@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actionCreator from '../actions';
 
-import TracksContainer from '../containers/home';
+import TracksContainer from '../containers/tracks';
 const Home = props => {
   useEffect(() => {
     props.onFetchTracks(1);

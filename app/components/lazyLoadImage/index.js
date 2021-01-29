@@ -35,7 +35,7 @@ export default function LazyImage({ src, alt, size }) {
           },
           {
             threshold: 0.5,
-            rootMargin: '0px 0px -100px 0px'
+            rootMargin: '0px'
           }
         );
         observer.observe(imageRef);
