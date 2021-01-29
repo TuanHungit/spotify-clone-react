@@ -5,7 +5,7 @@ export const Loader = styled.svg`
   margin: 40px;
   width: 50px;
   height: 50px;
-
+  text-align: center;
   & .path {
     stroke: #5652bf;
     stroke-linecap: round;

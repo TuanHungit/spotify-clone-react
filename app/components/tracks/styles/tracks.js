@@ -1,10 +1,15 @@
 import styled from 'styled-components/macro';
+import { Link as ReactRouterLink } from 'react-router';
+export const Container = styled.div`
+  min-height: 200px;
+  width: 50%;
 
-export const Container = styled.div``;
+  padding-bottom: 100px;
+`;
 
 export const Inner = styled.ul`
   display: flex;
-  max-width: 670px;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
 `;
@@ -12,14 +17,17 @@ export const Inner = styled.ul`
 export const Item = styled.li`
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
-  align-items: center;
-  width: 100%;
-  justify-content: space-between;
-  padding: 0 20px;
-`;
 
-export const LazyloadImage = styled.img``;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 export const Actions = styled.div``;
 
@@ -29,14 +37,28 @@ export const Share = styled.button``;
 
 export const Other = styled.button``;
 
-export const Title = styled.h5``;
+export const Title = styled(ReactRouterLink)`
+  color: gray;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
-export const Order = styled.p``;
+export const Order = styled.p`
+  line-height: 80px;
+  text-align: center;
+  width: 10%;
+  float: left;
+`;
 export const Group = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  width: 50%;
-  justify-content: space-between;
+  flex-direction: ${({ direction }) => (direction ? direction : 'row')};
+  align-items: ${({ direction }) =>
+    direction === 'column' ? 'none' : 'center'};
+  margin: 0 20px;
+  width: ${({ size }) => (size ? size : 20)}%;
+  justify-content: ${({ direction }) =>
+    direction === 'column' ? 'flex-start' : 'space-between'};
 `;
+
+export const Download = styled.button``;

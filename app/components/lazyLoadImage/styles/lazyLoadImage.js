@@ -2,9 +2,8 @@ import styled from 'styled-components/macro';
 
 export const Image = styled.img`
   display: block;
-  height: 100px;
-  width: 100px;
-
+  height: ${({ size }) => size}px;
+  width: ${({ size }) => size}px;
   @keyframes loaded {
     0% {
       opacity: 0;

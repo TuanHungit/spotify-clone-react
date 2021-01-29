@@ -3,7 +3,7 @@ import { Image } from './styles/lazyLoadImage';
 
 const placeHolder =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII=';
-export default function LazyImage({ src, alt }) {
+export default function LazyImage({ src, alt, size }) {
   const [imageSrc, setImageSrc] = useState(placeHolder);
   const [imageRef, setImageRef] = useState();
 
@@ -56,6 +56,7 @@ export default function LazyImage({ src, alt }) {
     <Image
       ref={setImageRef}
       src={imageSrc}
+      size={size}
       alt={alt}
       onLoad={onLoad}
       onError={onError}

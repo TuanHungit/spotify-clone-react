@@ -9,7 +9,9 @@ import {
   Share,
   Other,
   Order,
-  Group
+  Group,
+  LinksByComma,
+  Download
 } from './styles/tracks';
 export default function Tracks({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
@@ -45,4 +47,29 @@ Tracks.Order = function TracksOrder({ children, ...restProps }) {
 };
 Tracks.Group = function TracksGroup({ children, ...restProps }) {
   return <Group {...restProps}>{children}</Group>;
+};
+Tracks.LinksByComma = function TracksLinksByComma({
+  children,
+  artists,
+  definePath,
+  pathEntry,
+  titleEntry,
+  defineTitle
+}) {
+  return (
+    <Tracks.Group>
+      {artists.map((el, index) => (
+        <LinksByComma
+          key={`${el[titleEntry]}-${index}`}
+          to={(definePath && definePath(el[pathEntry])) || el[pathEntry]}
+        >
+          {(defineTitle && defineTitle(el[titleEntry])) || el[titleEntry]}
+          {children}
+        </LinksByComma>
+      ))}
+    </Tracks.Group>
+  );
+};
+Tracks.Download = function TracksDownload({ children, ...restProps }) {
+  return <Download {...restProps}>{children}</Download>;
 };

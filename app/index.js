@@ -6,13 +6,17 @@ import { Router } from 'react-router';
 import store from './store';
 import routes from './routes';
 import history from './history';
+import { GlobalStyles } from './global-styles';
 render(
-  <Provider store={store}>
-    <Router
-      history={history}
-      routes={routes}
-      onUpdate={() => window.scrollTo(0, 0)}
-    />
-  </Provider>,
+  <React.Fragment>
+    <GlobalStyles />
+    <Provider store={store}>
+      <Router
+        history={history}
+        routes={routes}
+        onUpdate={() => window.scrollTo(0, 0)}
+      />
+    </Provider>
+  </React.Fragment>,
   document.getElementById('app')
 );
