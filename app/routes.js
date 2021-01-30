@@ -1,6 +1,13 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
-import { fetchDataForHomePage } from './routes_callback';
-import HomePage from './pages/home';
+import { Route, IndexRoute, Switch } from 'react-router';
 
-export default <Route path="/" component={HomePage}></Route>;
+import HomePage from './pages/home';
+import Tracks from './pages/tracks';
+import App from './containers/App';
+
+export default (
+  <Route path="/" component={App}>
+    <IndexRoute component={HomePage} />
+    <Route path="/tracks/:slug" component={Tracks} />
+  </Route>
+);

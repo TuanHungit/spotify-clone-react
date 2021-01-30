@@ -1,19 +1,21 @@
 import styled from 'styled-components/macro';
-
+import { Link as ReactRouterLink } from 'react-router';
 export const PlayIcon = styled.span`
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   overflow: hidden;
   display: flex;
   background: #1db954;
   opacity: 0;
-  position: absolute;
-  right: 1.2rem;
-  bottom: 1.2rem;
+  position: relative;
+  left: 6.2rem;
+  bottom: 4.2rem;
+  margin: 0;
   transition: all 0.5s ease-in-out;
+  top: 2.2rem;
 `;
-export const Container = styled.div`
+export const Container = styled(ReactRouterLink)`
   padding-bottom: 0.8rem;
 
   background: rgb(24, 24, 24);
@@ -21,31 +23,39 @@ export const Container = styled.div`
   border-radius: 10px;
   overflow: hidden;
   padding: 1.2rem;
+  text-decoration: none;
+  color: white;
   box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-  position: relative;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   &:hover {
-    transform: scale(1.01);
     background: #282828;
     ${PlayIcon} {
       opacity: 1;
+      top: -4rem;
     }
   }
 `;
-export const Title = styled.h1`
+export const Title = styled.h3`
   margin-bottom: 0;
 `;
 export const SubTitle = styled.p`
   margin-top: 0.5rem;
-  margin-bottom: 1.2rem;
+  max-width: 150px;
+  color: #b3b3b3;
 `;
 export const Image = styled.img`
+  width: 160px;
   height: 160px;
   box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
   object-fit: cover;
+  position: relative;
 `;
 export const List = styled.div``;
 export const Content = styled.div`
-  padding: 0.4rem 0;
+  margin-top: -20px;
+`;
+export const Icon = styled.img`
+  margin-left: 9px;
+  width: 30px;
 `;

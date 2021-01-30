@@ -4,7 +4,6 @@ export const Container = styled.div`
   min-height: 200px;
   width: 82%;
   padding-bottom: 100px;
-  float: right;
   color: white;
   @media (max-width: 1000px) {
     font-size: 12px;

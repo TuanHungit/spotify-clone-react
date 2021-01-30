@@ -10,6 +10,7 @@ import plus from '../svgs/plus.svg';
 import * as ROUTES from '../contanst/routes';
 export default function NavContainer() {
   const [category, setCategory] = useState('/');
+
   return (
     <Nav>
       <Nav.Logo src={logo} />

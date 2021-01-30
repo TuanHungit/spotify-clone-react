@@ -5,7 +5,8 @@ import { Router } from 'react-router';
 import store from '../store';
 import routes from '../routes';
 import history from '../history';
-import { Main } from '../components';
+
+import { Main, Header } from '../components';
 
 export default () => {
   return (

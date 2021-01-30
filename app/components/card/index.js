@@ -6,7 +6,8 @@ import {
   Image,
   List,
   Content,
-  PlayIcon
+  PlayIcon,
+  Icon
 } from './styles/card';
 export default function Card({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
@@ -30,7 +31,7 @@ Card.Content = function CardContent({ children, ...restProps }) {
 Card.PlayIcon = function CardPlayIcon({ src, children, ...restProps }) {
   return (
     <PlayIcon {...restProps}>
-      <img src={src} />
+      <Icon src={src} />
       {children}
     </PlayIcon>
   );

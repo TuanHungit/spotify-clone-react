@@ -7,3 +7,5 @@ export { default as Card } from './card';
 export { default as Category } from './category';
 export { default as Main } from './main';
 export { default as MusicControl } from './musicControl';
+export { default as Header } from './header';
+export { default as PageInfo } from './pageInfo';
