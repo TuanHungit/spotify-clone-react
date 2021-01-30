@@ -13,10 +13,5 @@ export const GlobalStyles = createGlobalStyle`
         -moz-osx-font-smoothing: grayscale;
         
     }
-    #app {
-        height: 100vh;
-        background: #131313;
-        display: flex;
-        flex-direction: row;
-    }
+   
 `;

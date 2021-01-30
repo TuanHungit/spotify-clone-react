@@ -3,3 +3,7 @@ export { default as LazyLoad } from './lazyLoadImage';
 export { default as Loader } from './loading';
 export { default as LinksByComma } from './LinksByComma';
 export { default as Nav } from './nav';
+export { default as Card } from './card';
+export { default as Category } from './category';
+export { default as Main } from './main';
+export { default as MusicControl } from './musicControl';
