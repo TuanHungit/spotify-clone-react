@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 import { Link as ReactRouterLink } from 'react-router';
 
 export const Container = styled.div`
-  width: 18%;
+  width: 15%;
   height: 100%;
   background: #040404;
 `;
@@ -13,22 +13,36 @@ export const ListItem = styled.ul`
 `;
 export const Icon = styled.img`
   filter: brightness(0) invert(0.7);
+  transition: all 0.3s ease-in-out;
+  width: ${({ size }) => (size ? size : '24px')};
+  margin-right: 10px;
+  ${({ background }) =>
+    background
+      ? `background-color:${background}; 
+      filter: brightness(1) invert(0) !important; 
+      padding: 7px;
+      &:hover {
+        background-color: white;
+      }
+      `
+      : ''}
 `;
 
 export const Text = styled.p`
   color: #b3b3b3;
-  margin-left: 15px;
-  font-weight: bold;
+  font-weight: ${({ weight }) => (weight ? weight : '700px')};
+  font-size: 14px;
+  transition: all 0.6s ease-in-out;
 `;
 
 export const Item = styled(ReactRouterLink)`
   display: flex;
   color: #b3b3b3;
   border-radius: 5px;
-  padding: 0.7rem 0.8rem;
+  padding: 0.4rem 0.8rem;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.6s ease-in-out;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -37,6 +51,9 @@ export const Item = styled(ReactRouterLink)`
   }
   &:hover > ${Text} {
     color: white;
+  }
+  &:last-of-type {
+    margin-bottom: 10px;
   }
   ${({ active }) =>
     active
@@ -50,7 +67,19 @@ export const Item = styled(ReactRouterLink)`
       : ''}
 `;
 export const Logo = styled.img`
-  max-width: 170px;
-  max-height: 100px;
+  max-width: 190px;
+  max-height: 110px;
   filter: brightness(0) invert(1);
+`;
+
+export const Title = styled.h1`
+  text-transform: uppercase;
+  color: #b3b3b3;
+  font-size: 14px;
+  margin: 20px 0 5px 15px;
+`;
+
+export const Break = styled.div`
+  border-top: 0.5px solid #b3b3b3;
+  margin: 10px 12px;
 `;
