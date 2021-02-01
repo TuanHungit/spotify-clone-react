@@ -14,34 +14,37 @@ export default function (InnerComponent) {
     }
 
     componentDidMount() {
-      window.addEventListener('scroll', this.onScroll, false);
+      this.nv.addEventListener('scroll', this.onScroll, false);
     }
 
     componentWillUnmount() {
-      window.removeEventListener('scroll', this.onScroll, false);
+      this.nv.removeEventListener('scroll', this.onScroll, false);
     }
 
     onScroll() {
-      // delay the scroll event 10s call 100 times
-
       _throttle(() => {
         if (
-          window.innerHeight + window.scrollY >=
-          document.body.offsetHeight - 200
+          window.scrollY + window.innerHeight >=
+          this.nv.clientHeight + this.nv.offsetHeight
         ) {
           if (
-            this.props.pageLoaded < NUMBER_OF_PAGES &&
+            (this.props.pageLoaded < NUMBER_OF_PAGES) &
             !this.props.isLoading
           ) {
+            console.log(this.nv.clientHeight);
             const page = this.props.pageLoaded + 1;
             this.props.fetchTracks(page, this.props.activeId);
           }
         }
-      }, 1000)();
+      }, 100);
     }
 
     render() {
-      return <InnerComponent {...this.props} />;
+      return (
+        <div ref={elem => (this.nv = elem)}>
+          <InnerComponent {...this.props} />
+        </div>
+      );
     }
   }
 

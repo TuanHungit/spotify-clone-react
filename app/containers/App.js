@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from './nav';
 import Main from './main';
 
-import MusicControl from './musicControl';
+import Player from './player';
 import { Main as MainComponent } from '../components';
 export default () => {
   return (
@@ -11,7 +11,7 @@ export default () => {
         <Nav />
         <Main />
       </MainComponent.Group>
-      <MusicControl />
+      <Player />
     </React.Fragment>
   );
 };

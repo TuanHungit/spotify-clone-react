@@ -1,10 +1,12 @@
 import styled from 'styled-components/macro';
 import { Link as ReactRouterLink } from 'react-router';
 export const Container = styled.div`
+  display: flex;
   min-height: 200px;
-  width: 82%;
-  padding-bottom: 100px;
+  width: 100%;
+  padding-bottom: 0 0 100px -20px;
   color: white;
+  justify-content: center;
   @media (max-width: 1000px) {
     font-size: 12px;
   }
@@ -12,7 +14,7 @@ export const Container = styled.div`
 
 export const Inner = styled.ul`
   display: flex;
-  width: 100%;
+  width: 94%;
   flex-direction: column;
   justify-content: center;
 `;
@@ -22,12 +24,14 @@ export const Item = styled.li`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  height: 60px;
   margin-bottom: 10px;
+  border-radius: 5px;
   font-size: 14px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-  transition: all 0.2s ease-in-out;
+  padding: 0 15px;
+  transition: background 0.2s ease-in-out;
   &:hover {
+    background: rgba(255, 255, 255, 0.1);
     cursor: pointer;
   }
 
@@ -54,10 +58,8 @@ export const Share = styled.button``;
 export const Other = styled.button``;
 
 export const Title = styled(ReactRouterLink)`
-  color: gray;
-  &:hover {
-    text-decoration: underline;
-  }
+  color: white;
+  font-weight: bold;
 `;
 
 export const Order = styled.p`
@@ -68,11 +70,12 @@ export const Order = styled.p`
 `;
 export const Group = styled.div`
   display: flex;
+  float: left;
   flex-direction: ${({ direction }) => (direction ? direction : 'row')};
   align-items: ${({ direction }) =>
     direction === 'column' ? 'none' : 'center'};
-  margin: 0 20px;
-  width: ${({ size }) => (size ? size : 20)}%;
+  margin: 0 5px;
+  width: ${({ size }) => (size ? size : `20%`)};
   justify-content: ${({ direction }) =>
     direction === 'column' ? 'flex-start' : 'space-between'};
 `;

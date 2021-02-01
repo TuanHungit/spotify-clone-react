@@ -5,15 +5,12 @@ import * as actionCreator from '../actions';
 import TracksContainer from '../containers/tracks';
 
 const Home = props => {
+  const { id } = props.location.state;
   useEffect(() => {
-    props.onFetchTracks(1);
-  }, []);
+    props.onFetchTracks(1, id);
+  }, [id]);
 
-  return (
-    <React.Fragment>
-      <TracksContainer {...props} />
-    </React.Fragment>
-  );
+  return <TracksContainer {...props} />;
 };
 
 const mapStateToProps = state => {

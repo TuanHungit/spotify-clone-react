@@ -18,7 +18,7 @@ const HomeContainer = props => {
   return (
     <PageInfo>
       <PageInfo.Wrapper>
-        <PageInfo.Group padding="50px">
+        <PageInfo.Group padding="30px">
           <PageInfo.Image src={img} />
           <PageInfo.Content>
             <PageInfo.Title uppercase size="6rem">
@@ -38,17 +38,20 @@ const HomeContainer = props => {
           <PageInfo.PlayIcon src={heart} />
           <PageInfo.PlayIcon src={note} />
         </PageInfo.Group>
+
         <Tracks>
           <Tracks.Inner>
             {tracks.map((el, key) => (
               <Tracks.Item key={key}>
-                <Tracks.Group size={15}>
+                <Tracks.Group size={'80px'}>
                   <Tracks.Order>{el.order}</Tracks.Order>
-                  <LazyLoad src={el.thumbnail} alt="Thumbnail" size={60} />
+                  <LazyLoad src={el.thumbnail} alt="Thumbnail" size={45} />
                 </Tracks.Group>
-                <Tracks.Group size={85}>
-                  <Tracks.Group size={80} direction="column">
+                <Tracks.Group size={'93%'}>
+                  <Tracks.Group size={'50%'}>
                     <Tracks.Title>{el.name}</Tracks.Title>
+                  </Tracks.Group>
+                  <Tracks.Group size="30%">
                     <LinksByComma
                       artists={el.artists}
                       definePath={link => link.replace('/nghe-si/', '/artist/')}
@@ -59,12 +62,12 @@ const HomeContainer = props => {
                       pathEntry="link"
                     />
                   </Tracks.Group>
-                  <Tracks.Group size={20}>
+                  <Tracks.Group size={'20%'}>
                     <Tracks.Actions>
                       <Tracks.ActionInner>
-                        <FontAwesomeIcon icon={faDownload} color="#27ded5" />
-                        <FontAwesomeIcon icon={faShare} color="#58d68d" />
-                        <FontAwesomeIcon icon={faEllipsisH} color="gray" />
+                        {/* <FontAwesomeIcon icon={faDownload} color="#27ded5" />
+                        <FontAwesomeIcon icon={faShare} color="#58d68d" /> */}
+                        <FontAwesomeIcon icon={faEllipsisH} color="white" />
                       </Tracks.ActionInner>
                     </Tracks.Actions>
                   </Tracks.Group>

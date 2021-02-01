@@ -12,7 +12,7 @@ const Categories = () => {
       desc: 'Top 100 bài hát Hàn Quốc 2021'
     },
     {
-      id: 'ZWZB96DC',
+      id: 'ZWZB969E',
       name: 'TOP 100 VPOP',
       slug: 'top-100-vpop',
       img:
@@ -20,7 +20,7 @@ const Categories = () => {
       desc: 'Top 100 bài hát Việt Nam 2021'
     },
     {
-      id: 'ZWZB969E',
+      id: 'ZWZB96DC',
       name: 'TOP 100 US/UK',
       slug: 'top-100-usuk',
       img:

@@ -1,0 +1,13 @@
+@import 'input-range-variables';
+@import 'input-range-slider';
+@import 'input-range-label';
+@import 'input-range-label-container';
+@import 'input-range-track';
+
+.input-range {
+  height: $input-range-slider-height;
+  position: relative;
+  margin: 0 15px;
+  margin-top: 3px;
+  width: 100%;
+}

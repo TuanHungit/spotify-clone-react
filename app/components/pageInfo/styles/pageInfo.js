@@ -2,6 +2,8 @@ import styled from 'styled-components/macro';
 
 export const Container = styled.div`
   background-color: rgb(182, 250, 206);
+  max-height: 65vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), #121212 95%);
 `;
 export const Image = styled.img`
   height: 200px;
@@ -39,8 +41,8 @@ export const Group = styled.div`
   ${({ padding }) => (padding ? `padding: 50px;` : '')}
 `;
 export const Wrapper = styled.div`
-  background-image: linear-gradient(rgba(0, 0, 0, 0.1), #121212 17%);
   width: 100%;
+
   display: flex;
   flex-direction: column;
 `;
@@ -62,4 +64,8 @@ export const PlayIcon = styled.span`
     margin-right: 10px;
   }
   margin: -20px 0 20px 5px;
+  transition: all 0.3s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;

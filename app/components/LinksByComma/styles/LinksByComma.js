@@ -8,12 +8,13 @@ export const Container = styled.div`
 export const Item = styled(ReactRouterLink)`
   margin-right: 3px;
   text-decoration: none;
-  margin-top: 10px;
   font-size: 12px;
-  color: #3eb4bf !important;
- 
+  color: #b3b3b3 !important;
+  transition: all 0.3s ease;
+  font-weight: 600;
   &:hover {
-    text-decoration: underline;
+    color: white !important;
+    transform: scale(1.1);
   }
 
   &:after {
