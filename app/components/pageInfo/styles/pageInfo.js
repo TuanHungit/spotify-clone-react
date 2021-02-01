@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 
 export const Container = styled.div`
   background-color: rgb(182, 250, 206);
-  max-height: 65vh;
+  max-height: 85vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.1), #121212 95%);
 `;
 export const Image = styled.img`

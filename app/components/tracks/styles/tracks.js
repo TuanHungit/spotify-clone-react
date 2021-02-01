@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   min-height: 200px;
   width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
   padding-bottom: 0 0 100px -20px;
   color: white;
   justify-content: center;
@@ -17,6 +18,7 @@ export const Inner = styled.ul`
   width: 94%;
   flex-direction: column;
   justify-content: center;
+  padding-top: 20px;
 `;
 
 export const Item = styled.li`
