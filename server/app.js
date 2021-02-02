@@ -6,7 +6,6 @@ const path = require('path');
 module.exports = function (app) {
   app.use('/api', api);
   app.get('*', (req, res) => {
-    console.log(__dirname, '../public/index.html');
     res.sendFile(path.resolve(__dirname, '../public/index.html'));
   });
   // development error handler

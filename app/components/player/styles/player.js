@@ -48,9 +48,17 @@ export const Button = styled.button`
 
 export const Icon = styled.img`
   width: 30px;
+
   padding-left: 3px;
   filter: brightness(0) invert(${({ opacity }) => (opacity ? opacity : 1)});
-
+  ${({ opacity }) =>
+    opacity
+      ? `
+    &:hover{
+      filter: brightness(0) invert(1);
+    }
+  `
+      : ''}
   ${({ rotate }) => (rotate ? ` transform: rotate(${rotate});` : '')}
 `;
 export const TimeSeek = styled.span`
@@ -62,6 +70,7 @@ export const WrapperIcon = styled.div`
   border-radius: 50%;
   display: flex;
   align-items: center;
+  margin: 0 7px;
   justify-content: center;
   ${({ background }) =>
     background

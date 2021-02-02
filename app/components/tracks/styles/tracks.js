@@ -67,6 +67,7 @@ export const Title = styled(ReactRouterLink)`
 export const Order = styled.p`
   line-height: 80px;
   text-align: center;
+  font-weight: 600;
   width: 10%;
   float: left;
 `;

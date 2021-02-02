@@ -15,6 +15,7 @@ export const Item = styled(ReactRouterLink)`
   &:hover {
     color: white !important;
     transform: scale(1.1);
+    text-decoration: underline;
   }
 
   &:after {

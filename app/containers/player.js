@@ -22,7 +22,7 @@ export default () => {
       <Player.Group size="40%" direction="column" justifyContent="center">
         <Player.Group size="100%" justifyContent="center">
           <Player.WrapperIcon>
-            <Player.Icon src={shuffleStracks} />
+            <Player.Icon src={shuffleStracks} opacity={0.5} />
           </Player.WrapperIcon>
           <Player.WrapperIcon>
             <Player.Icon src={prevStacks} opacity={0.5} />
@@ -34,7 +34,7 @@ export default () => {
             <Player.Icon src={prevStacks} rotate={'180deg'} opacity={0.5} />
           </Player.WrapperIcon>
           <Player.WrapperIcon>
-            <Player.Icon src={repeatStracks} />
+            <Player.Icon src={repeatStracks} opacity={0.5} />
           </Player.WrapperIcon>
         </Player.Group>
         <Player.Group size="100%" justifyContent="center">
