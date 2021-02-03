@@ -13,7 +13,7 @@ export function fetchSong(id, name) {
         delete data.artist;
         dispacth({ type: TYPES.FETCH_SONG_SUCCESS, data });
       })
-      .then(err => {
+      .catch(err => {
         console.log(err);
         dispacth({ type: TYPES.FETCH_SONG_FAILURE });
       });

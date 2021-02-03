@@ -1,7 +1,7 @@
 import * as TYPES from '../contanst/action-types';
 
 const initialState = {
-  data: [],
+  data: null,
   isFetching: false
 };
 

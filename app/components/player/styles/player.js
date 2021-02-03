@@ -23,9 +23,6 @@ export const Group = styled.div`
   width: ${({ size }) => (size ? size : '20%')};
   justify-content: ${({ justifyContent }) =>
     justifyContent ? justifyContent : 'space-between'};
-  &:last-of-type {
-    margin-right: 20px;
-  }
 `;
 export const Title = styled.h5`
   color: white;
@@ -36,6 +33,7 @@ export const Image = styled.img`
   width: 60px;
   height: 60px;
   margin-left: 20px;
+  boder: 0;
 `;
 export const Button = styled.button`
   width: 20px;
@@ -48,8 +46,7 @@ export const Button = styled.button`
 
 export const Icon = styled.img`
   width: 30px;
-
-  padding-left: 3px;
+  padding-left: ${({ isPlaying }) => (isPlaying ? `0.5px` : '3px')};
   filter: brightness(0) invert(${({ opacity }) => (opacity ? opacity : 1)});
   ${({ opacity }) =>
     opacity
@@ -64,9 +61,10 @@ export const Icon = styled.img`
 export const TimeSeek = styled.span`
   font-size: 13px;
   color: #b3b3b3;
+  font-weight: 500;
 `;
 export const WrapperIcon = styled.div`
-  width: 40px;
+  width: 35px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -74,7 +72,7 @@ export const WrapperIcon = styled.div`
   justify-content: center;
   ${({ background }) =>
     background
-      ? ` height: 40px; background: ${background}; 
+      ? ` height: 35px; background: ${background}; 
       ${Icon} {
         filter: brightness(0) invert(0);
         }`

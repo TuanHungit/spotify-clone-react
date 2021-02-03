@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import * as actionCreator from '../actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faDownload,
@@ -12,9 +14,13 @@ import { PageInfo } from '../components';
 import play from '../svgs/play.svg';
 import heart from '../svgs/heart.svg';
 import note from '../svgs/note.svg';
-const HomeContainer = props => {
-  const { tracks, isFading, isLoading } = props;
-  const { name, img, desc } = props.location.state;
+import { changeAlias } from './../utils/func';
+
+const TracksContainer = props => {
+  const { id, name, img, desc } = props.location.state;
+  useEffect(() => {
+    props.onFetchTracks(1, id);
+  }, [id]);
   return (
     <PageInfo>
       <PageInfo.Wrapper>
@@ -41,8 +47,11 @@ const HomeContainer = props => {
 
         <Tracks>
           <Tracks.Inner>
-            {tracks.map((el, key) => (
-              <Tracks.Item key={key}>
+            {props.tracks.map((el, key) => (
+              <Tracks.Item
+                key={key}
+                onClick={() => props.onFetchSong(el.id, changeAlias(el.name))}
+              >
                 <Tracks.Group size={'80px'}>
                   <Tracks.Order>{el.order}</Tracks.Order>
                   <LazyLoad src={el.thumbnail} alt="Thumbnail" size={45} />
@@ -74,7 +83,7 @@ const HomeContainer = props => {
                 </Tracks.Group>
               </Tracks.Item>
             ))}
-            {isLoading && (
+            {props.isLoading && (
               <Loader>
                 <Loader.Item viewBox="0 0 50 50">
                   <circle
@@ -94,9 +103,27 @@ const HomeContainer = props => {
     </PageInfo>
   );
 };
-HomeContainer.propTypes = {
+TracksContainer.propTypes = {
   tracks: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
   isFading: PropTypes.bool.isRequired
 };
-export default InfiniteScroll(HomeContainer);
+
+const mapStateToProps = state => {
+  return {
+    tracks: state.tracksState.tracks,
+    isLoading: state.tracksState.isLoading,
+    isFading: state.uiState.isFading
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    onFetchTracks: (page, tracksId) =>
+      dispatch(actionCreator.fetchTracks(page, tracksId)),
+    onFetchSong: (id, name) => dispatch(actionCreator.fetchSong(id, name))
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(InfiniteScroll(TracksContainer));

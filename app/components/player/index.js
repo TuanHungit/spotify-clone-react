@@ -12,7 +12,7 @@ import {
 export default function Player({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
 }
-Player.Audio = function PlayerAudio({ children, ...restProps }) {
+Player.Audio = function PlayerAudio({ ...restProps }) {
   return <Audio {...restProps} />;
 };
 Player.Title = function PlayerTitle({ children, ...restProps }) {
