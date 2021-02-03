@@ -2,22 +2,18 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actionCreator from '../actions';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faDownload,
-  faShare,
-  faEllipsisH
-} from '@fortawesome/free-solid-svg-icons';
-import { Tracks, LazyLoad, Loader, LinksByComma } from '../components';
+
+import { Tracks, LazyLoad, Loader, LinksByComma, Player } from '../components';
 import InfiniteScroll from '../HOC/infiniteScroll';
 import { PageInfo } from '../components';
-import play from '../svgs/play.svg';
-import heart from '../svgs/heart.svg';
-import note from '../svgs/note.svg';
+import * as SVG from '../svgs';
 import { changeAlias } from './../utils/func';
+import { formatTime } from '../utils/func';
 
 const TracksContainer = props => {
   const { id, name, img, desc } = props.location.state;
+  const { tracks, isLoading, songData, isPlaying } = props;
+
   useEffect(() => {
     props.onFetchTracks(1, id);
   }, [id]);
@@ -27,7 +23,7 @@ const TracksContainer = props => {
         <PageInfo.Group padding="30px">
           <PageInfo.Image src={img} />
           <PageInfo.Content>
-            <PageInfo.Title uppercase size="6rem">
+            <PageInfo.Title uppercase size="10px">
               Playplist
             </PageInfo.Title>
             <PageInfo.Title>{name}</PageInfo.Title>
@@ -40,27 +36,31 @@ const TracksContainer = props => {
           </PageInfo.Content>
         </PageInfo.Group>
         <PageInfo.Group>
-          <PageInfo.PlayIcon src={play} background={'#1db954'} />
-          <PageInfo.PlayIcon src={heart} />
-          <PageInfo.PlayIcon src={note} />
+          <PageInfo.PlayIcon src={SVG.play} background={'#1db954'} />
+          <PageInfo.PlayIcon src={SVG.heart} />
+          <PageInfo.PlayIcon src={SVG.note} />
         </PageInfo.Group>
 
         <Tracks>
           <Tracks.Inner>
-            {props.tracks.map((el, key) => (
+            {tracks.map((el, key) => (
               <Tracks.Item
                 key={key}
                 onClick={() => props.onFetchSong(el.id, changeAlias(el.name))}
+                isPlaying={songData && songData.id === el.id && isPlaying}
+                isPlayer={songData && songData.id === el.id}
               >
                 <Tracks.Group size={'80px'}>
                   <Tracks.Order>{el.order}</Tracks.Order>
+                  <Tracks.Icon
+                    isPlaying={songData && songData.id === el.id && isPlaying}
+                    src={SVG.play}
+                  />
                   <LazyLoad src={el.thumbnail} alt="Thumbnail" size={45} />
                 </Tracks.Group>
-                <Tracks.Group size={'93%'}>
-                  <Tracks.Group size={'50%'}>
+                <Tracks.Group size={'100%'}>
+                  <Tracks.Group size={'50%'} direction="column">
                     <Tracks.Title>{el.name}</Tracks.Title>
-                  </Tracks.Group>
-                  <Tracks.Group size="30%">
                     <LinksByComma
                       artists={el.artists}
                       definePath={link => link.replace('/nghe-si/', '/artist/')}
@@ -71,19 +71,21 @@ const TracksContainer = props => {
                       pathEntry="link"
                     />
                   </Tracks.Group>
-                  <Tracks.Group size={'20%'}>
-                    <Tracks.Actions>
-                      <Tracks.ActionInner>
-                        {/* <FontAwesomeIcon icon={faDownload} color="#27ded5" />
-                        <FontAwesomeIcon icon={faShare} color="#58d68d" /> */}
-                        <FontAwesomeIcon icon={faEllipsisH} color="white" />
-                      </Tracks.ActionInner>
-                    </Tracks.Actions>
+                  <Tracks.Group size="30%">
+                    <Tracks.SubTitle>
+                      {' '}
+                      {el.album ? el.album.name : 'Không có'}
+                    </Tracks.SubTitle>
+                  </Tracks.Group>
+                  <Tracks.Group size={'20%'} justifyContent="flex-end">
+                    <Tracks.Icon src={SVG.heart} size="17px" />
+                    <Tracks.SubTitle>{formatTime(el.duration)}</Tracks.SubTitle>
+                    <Tracks.Icon src={SVG.more} />
                   </Tracks.Group>
                 </Tracks.Group>
               </Tracks.Item>
             ))}
-            {props.isLoading && (
+            {isLoading && (
               <Loader>
                 <Loader.Item viewBox="0 0 50 50">
                   <circle
@@ -106,14 +108,18 @@ const TracksContainer = props => {
 TracksContainer.propTypes = {
   tracks: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  isFading: PropTypes.bool.isRequired
+  isFading: PropTypes.bool.isRequired,
+  songData: PropTypes.object.isRequired,
+  isPlaying: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => {
   return {
     tracks: state.tracksState.tracks,
     isLoading: state.tracksState.isLoading,
-    isFading: state.uiState.isFading
+    isFading: state.uiState.isFading,
+    songData: state.songState.data,
+    isPlaying: state.uiState.isPlaying
   };
 };
 const mapDispatchToProps = dispatch => {

@@ -26,6 +26,14 @@ const Categories = () => {
       img:
         'https://images.unsplash.com/photo-1587223075055-82e9a937ddff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2700&q=80',
       desc: 'Top 100 bài hát Âu Mỹ 2021'
+    },
+    {
+      id: 'ZWZAWEZB',
+      name: 'Top bài hát của Bùi Anh Tuấn',
+      slug: 'Nhung-Bai-Hat-Hay-Nhat-Cua-Bui-Anh-Tuan-Bui-Anh-Tuan',
+      img:
+        'https://images.unsplash.com/photo-1587223075055-82e9a937ddff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2700&q=80',
+      desc: 'Tuyển tập các bài hát hay nhất của Bùi Anh Tuấn'
     }
   ];
 

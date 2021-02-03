@@ -16,10 +16,11 @@ export const Content = styled.div`
   text-align: left;
   padding: 0 2rem;
 `;
-export const Title = styled.h1`
-  font-size: ${({ size }) => (size ? `size` : '7rem')};
+export const Title = styled.p`
+  font-size: ${({ size }) => (size ? `size` : '5.5rem')};
   margin: 0;
   line-height: 1;
+  font-weight: bold;
   ${({ uppercase }) => (uppercase ? `text-transform: uppercase;` : '')}
 `;
 export const SubTitle = styled.p`

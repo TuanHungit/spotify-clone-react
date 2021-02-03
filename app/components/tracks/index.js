@@ -6,11 +6,10 @@ import {
   Title,
   Actions,
   ActionInner,
-  Share,
-  Other,
   Order,
   Group,
-  LinksByComma
+  SubTitle,
+  Icon
 } from './styles/tracks';
 export default function Tracks({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
@@ -32,12 +31,7 @@ Tracks.Thumbnail = function TracksThumbnail({ children, ...restProps }) {
 Tracks.Actions = function TracksActions({ children, ...restProps }) {
   return <Actions {...restProps}>{children}</Actions>;
 };
-Tracks.Share = function TracksShare({ children, ...restProps }) {
-  return <Share {...restProps}>{children}</Share>;
-};
-Tracks.Other = function TracksOther({ children, ...restProps }) {
-  return <Other {...restProps}>{children}</Other>;
-};
+
 Tracks.ActionInner = function TracksActionInner({ children, ...restProps }) {
   return <ActionInner {...restProps}>{children}</ActionInner>;
 };
@@ -47,29 +41,10 @@ Tracks.Order = function TracksOrder({ children, ...restProps }) {
 Tracks.Group = function TracksGroup({ children, ...restProps }) {
   return <Group {...restProps}>{children}</Group>;
 };
-Tracks.LinksByComma = function TracksLinksByComma({
-  children,
-  artists,
-  definePath,
-  pathEntry,
-  titleEntry,
-  defineTitle
-}) {
-  return (
-    <Tracks.Group>
-      {artists.map((el, index) => (
-        <LinksByComma
-          key={`${el[titleEntry]}-${index}`}
-          to={(definePath && definePath(el[pathEntry])) || el[pathEntry]}
-        >
-          {(defineTitle && defineTitle(el[titleEntry])) || el[titleEntry]}
-          {children}
-        </LinksByComma>
-      ))}
-    </Tracks.Group>
-  );
+Tracks.Icon = function TracksIcon({ children, ...restProps }) {
+  return <Icon {...restProps}>{children}</Icon>;
 };
 
-Tracks.Download = function TracksDownload({ children, ...restProps }) {
-  return <Download {...restProps}>{children}</Download>;
+Tracks.SubTitle = function TracksSubTitle({ children, ...restProps }) {
+  return <SubTitle {...restProps}>{children}</SubTitle>;
 };

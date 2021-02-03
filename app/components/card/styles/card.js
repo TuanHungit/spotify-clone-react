@@ -16,8 +16,6 @@ export const PlayIcon = styled.span`
   top: 2.2rem;
 `;
 export const Container = styled(ReactRouterLink)`
-  padding-bottom: 0.8rem;
-
   background: rgb(24, 24, 24);
   margin-right: 10px;
   border-radius: 10px;
@@ -27,6 +25,8 @@ export const Container = styled(ReactRouterLink)`
   color: white;
   box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  max-width: 160px;
+  padding-bottom: 0.8rem;
   transition: all 0.3s ease-in-out;
   &:hover {
     background: #282828;

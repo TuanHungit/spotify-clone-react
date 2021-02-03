@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { Link as ReactRouterLink } from 'react-router';
+
 export const Container = styled.div`
   display: flex;
   min-height: 200px;
@@ -21,6 +22,49 @@ export const Inner = styled.ul`
   padding-top: 20px;
 `;
 
+export const Icon = styled.img`
+  width: ${({ size }) => (size ? size : `30px`)};
+  filter: brightness(0) invert(0.8);
+  display: none;
+  position: relative;
+  margin-left: -5px;
+  &:last-of-type {
+    margin-left: 65px;
+  }
+  &:hover {
+    filter: brightness(0) invert(1);
+  }
+  ${({ isPlaying }) =>
+    isPlaying
+      ? `
+          color: #1db954;
+          width: 24px;
+          filter:none;
+          content:url("https://open.scdn.co/cdn/images/equaliser-animated-green.73b73928.gif");
+          display:block;`
+      : ``}
+`;
+
+export const Order = styled.p`
+  line-height: 80px;
+  text-align: center;
+  font-weight: 600;
+  width: 20%;
+`;
+
+export const SubTitle = styled.p`
+  color: #b3b3b3;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 45px;
+  position: absolute;
+`;
+
+export const Title = styled(ReactRouterLink)`
+  color: white;
+  font-weight: bold;
+`;
+
 export const Item = styled.li`
   display: flex;
   flex-direction: row;
@@ -35,11 +79,36 @@ export const Item = styled.li`
   &:hover {
     background: rgba(255, 255, 255, 0.1);
     cursor: pointer;
+    ${Icon} {
+      display: block;
+    }
+    ${Order} {
+      display: none;
+    }
+    ${SubTitle} {
+      color: white;
+    }
   }
 
   @media (max-width: 1000px) {
     font-size: 12px;
   }
+  ${({ isPlayer }) =>
+    isPlayer
+      ? `${Title}, ${Order}{
+    color: #1db954
+    }
+    `
+      : ``}
+
+  ${({ isPlaying }) =>
+    isPlaying
+      ? `
+        ${Order}{
+          display:none;
+        }
+  }`
+      : ``}
 `;
 
 export const Actions = styled.div`
@@ -55,22 +124,6 @@ export const ActionInner = styled.div`
   justify-content: space-between;
 `;
 
-export const Share = styled.button``;
-
-export const Other = styled.button``;
-
-export const Title = styled(ReactRouterLink)`
-  color: white;
-  font-weight: bold;
-`;
-
-export const Order = styled.p`
-  line-height: 80px;
-  text-align: center;
-  font-weight: 600;
-  width: 10%;
-  float: left;
-`;
 export const Group = styled.div`
   display: flex;
   float: left;
@@ -79,6 +132,6 @@ export const Group = styled.div`
     direction === 'column' ? 'none' : 'center'};
   margin: 0 5px;
   width: ${({ size }) => (size ? size : `20%`)};
-  justify-content: ${({ direction }) =>
-    direction === 'column' ? 'flex-start' : 'space-between'};
+  justify-content: ${({ justifyContent }) =>
+    justifyContent ? justifyContent : 'space-between'};
 `;

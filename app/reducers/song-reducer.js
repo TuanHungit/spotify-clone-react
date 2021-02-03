@@ -8,11 +8,16 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case TYPES.START_FETCH_SONG:
-      return { ...state, isFetching: true };
+      return { ...state, isFetching: true, isPlaying: false };
     case TYPES.FETCH_SONG_SUCCESS:
-      return { ...state, isFetching: false, data: action.data };
+      return {
+        ...state,
+        isFetching: false,
+        data: action.data,
+        isPlaying: true
+      };
     case TYPES.FETCH_SONG_FAILURE:
-      return { ...state, isFetching: false };
+      return { ...state, isFetching: false, isPlaying: false };
     default:
       return state;
   }

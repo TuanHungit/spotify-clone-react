@@ -2,7 +2,12 @@ const { axios } = require('../../../utils');
 const lrcParser = require('lrc-parser');
 
 exports.getTop100Song = (req, res, next) => {
-  const [popUsId, kpopId, vpopId] = ['ZWZB96AB', 'ZWZB96DC', 'ZWZB969E'];
+  const [popUsId, kpopId, vpopId, BAT] = [
+    'ZWZB96AB',
+    'ZWZB96DC',
+    'ZWZB969E',
+    'ZWZAWEZB'
+  ];
   let topId;
   switch (req.params.type) {
     case kpopId:
@@ -10,8 +15,10 @@ exports.getTop100Song = (req, res, next) => {
       break;
     case vpopId:
       topId = vpopId;
-    default:
+    case popUsId:
       topId = popUsId;
+    default:
+      topId = BAT;
   }
   const pageNumber = req.query.page;
   const start = pageNumber ? (pageNumber - 1) * 20 : 0;

@@ -6,18 +6,12 @@ import PropTypes from 'prop-types';
 import { Player, LinksByComma } from '../components';
 import { requestInterval, clearRequestInterval } from '../requestInterval';
 import * as actionCreator from '../actions';
-import play from '../svgs/play.svg';
-import prevStacks from '../svgs/prevStracks.svg';
-import shuffleStracks from '../svgs/shuffleStracks.svg';
-import repeatStracks from '../svgs/repeatStracks.svg';
-import queueStracks from '../svgs/queueStracks.svg';
-import lyrics from '../svgs/lyrics.svg';
-import pause from '../svgs/pause.svg';
+import * as SVG from '../svgs';
 import { formatTime } from '../utils/func';
+
 const PlayerContainer = props => {
-  const { songData, isFetching } = props;
+  const { songData, isFetching, onSetPlaying, isPlaying } = props;
   const audioRef = useRef();
-  const [isPlaying, setPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [loop, setLoop] = useState(false);
 
@@ -25,7 +19,7 @@ const PlayerContainer = props => {
 
   const onLoadedData = () => {
     setDuration(audioRef.current.duration);
-    setPlaying(!isPlaying);
+    onSetPlaying(true);
     audioRef.current.play();
   };
 
@@ -35,7 +29,7 @@ const PlayerContainer = props => {
     } else {
       audioRef.current.play();
     }
-    setPlaying(!isPlaying);
+    onSetPlaying(!isPlaying);
   };
 
   return (
@@ -63,23 +57,23 @@ const PlayerContainer = props => {
       <Player.Group size="40%" direction="column" justifyContent="center">
         <Player.Group size="100%" justifyContent="center">
           <Player.WrapperIcon>
-            <Player.Icon src={shuffleStracks} opacity={0.5} />
+            <Player.Icon src={SVG.shuffleStracks} opacity={0.5} />
           </Player.WrapperIcon>
           <Player.WrapperIcon>
-            <Player.Icon src={prevStacks} opacity={0.5} />
+            <Player.Icon src={SVG.prevStacks} opacity={0.5} />
           </Player.WrapperIcon>
           <Player.WrapperIcon background="white">
             <Player.Icon
-              src={isPlaying ? pause : play}
+              src={isPlaying ? SVG.pause : SVG.play}
               onClick={handlePausePlayClick}
               isPlaying={isPlaying}
             />
           </Player.WrapperIcon>
           <Player.WrapperIcon>
-            <Player.Icon src={prevStacks} rotate={'180deg'} opacity={0.5} />
+            <Player.Icon src={SVG.prevStacks} rotate={'180deg'} opacity={0.5} />
           </Player.WrapperIcon>
           <Player.WrapperIcon>
-            <Player.Icon src={repeatStracks} opacity={0.5} />
+            <Player.Icon src={SVG.repeatStracks} opacity={0.5} />
           </Player.WrapperIcon>
         </Player.Group>
         <Player.Group size="100%" justifyContent="center">
@@ -98,10 +92,10 @@ const PlayerContainer = props => {
       </Player.Group>
       <Player.Group size="30%" justifyContent="flex-end">
         <Player.WrapperIcon>
-          <Player.Icon src={lyrics} />
+          <Player.Icon src={SVG.lyrics} />
         </Player.WrapperIcon>
         <Player.WrapperIcon>
-          <Player.Icon src={queueStracks} />
+          <Player.Icon src={SVG.queueStracks} />
         </Player.WrapperIcon>
       </Player.Group>
     </Player>
@@ -111,20 +105,23 @@ const PlayerContainer = props => {
 PlayerContainer.propTypes = {
   songdata: PropTypes.object.isRequired,
   fetchSong: PropTypes.func.isRequired,
-  isFetching: PropTypes.bool.isRequired
+  isFetching: PropTypes.bool.isRequired,
+  isPlaying: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => {
-  const { songState, routing } = state;
+  const { songState, routing, uiState } = state;
   return {
     songData: songState.data,
     isFetching: songState.isFetching,
+    isPlaying: uiState.isPlaying,
     routing
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchSong: (id, name) => dispatch(actionCreator.fetchSong(id, name))
+    onFetchSong: (id, name) => dispatch(actionCreator.fetchSong(id, name)),
+    onSetPlaying: isPlaying => dispatch(actionCreator.setPlaying(isPlaying))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerContainer);

@@ -6,6 +6,7 @@ export const FETCH_TRACKS_FAILURE = 'FETCH_TRACKS_FAILURE';
 // acitons for UI
 export const START_FADING = 'START_FADING';
 export const STOP_FADING = 'STOP_FADING';
+export const SET_PLAYING = 'SET_PLAYING';
 
 //actions for song
 export const START_FETCH_SONG = 'START_FETCH_SONG';
