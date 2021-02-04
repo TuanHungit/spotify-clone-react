@@ -47,11 +47,20 @@ const PlayerContainer = props => {
               onEnded={() => setPlaying(false)}
             />
             <Player.Image src={songData.thumbnail} alt="thumbnail" />
-            <Player.Title>{songData.name}</Player.Title>
+            <Player.Group size={'50%'} direction="column">
+              <Player.Title>{songData.name}</Player.Title>
+              <LinksByComma
+                artists={songData.artists}
+                definePath={link => link.replace('/nghe-si/', '/artist/')}
+                defineTitle={title =>
+                  title.replace('Nhiều nghệ sĩ', 'Various artists')
+                }
+                titleEntry="name"
+                pathEntry="link"
+              />
+            </Player.Group>
           </React.Fragment>
         ) : null}
-
-        {/* <LinksByComma /> */}
       </Player.Group>
 
       <Player.Group size="40%" direction="column" justifyContent="center">

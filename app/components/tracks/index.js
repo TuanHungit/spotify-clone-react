@@ -9,7 +9,8 @@ import {
   Order,
   Group,
   SubTitle,
-  Icon
+  Icon,
+  Break
 } from './styles/tracks';
 export default function Tracks({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
@@ -47,4 +48,8 @@ Tracks.Icon = function TracksIcon({ children, ...restProps }) {
 
 Tracks.SubTitle = function TracksSubTitle({ children, ...restProps }) {
   return <SubTitle {...restProps}>{children}</SubTitle>;
+};
+
+Tracks.Break = function TracksBreak({ children, ...restProps }) {
+  return <Break {...restProps} />;
 };

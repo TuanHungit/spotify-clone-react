@@ -65,6 +65,18 @@ export const Title = styled(ReactRouterLink)`
   font-weight: bold;
 `;
 
+export const Group = styled.div`
+  display: flex;
+  float: left;
+  flex-direction: ${({ direction }) => (direction ? direction : 'row')};
+  align-items: ${({ direction }) =>
+    direction === 'column' ? 'none' : 'center'};
+  margin: 0 5px;
+  width: ${({ size }) => (size ? size : `20%`)};
+  justify-content: ${({ justifyContent }) =>
+    justifyContent ? justifyContent : 'space-between'};
+`;
+
 export const Item = styled.li`
   display: flex;
   flex-direction: row;
@@ -76,7 +88,9 @@ export const Item = styled.li`
   font-size: 14px;
   padding: 0 15px;
   transition: background 0.2s ease-in-out;
-  &:hover {
+  ${({ hover }) =>
+    hover
+      ? `&:hover {
     background: rgba(255, 255, 255, 0.1);
     cursor: pointer;
     ${Icon} {
@@ -88,7 +102,17 @@ export const Item = styled.li`
     ${SubTitle} {
       color: white;
     }
-  }
+  }`
+      : `
+    ${Group}{
+      color: #b3b3b3;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    ${SubTitle}{
+      text-transform: uppercase;
+    }
+    `}
 
   @media (max-width: 1000px) {
     font-size: 12px;
@@ -124,14 +148,8 @@ export const ActionInner = styled.div`
   justify-content: space-between;
 `;
 
-export const Group = styled.div`
-  display: flex;
-  float: left;
-  flex-direction: ${({ direction }) => (direction ? direction : 'row')};
-  align-items: ${({ direction }) =>
-    direction === 'column' ? 'none' : 'center'};
-  margin: 0 5px;
-  width: ${({ size }) => (size ? size : `20%`)};
-  justify-content: ${({ justifyContent }) =>
-    justifyContent ? justifyContent : 'space-between'};
+export const Break = styled.div`
+  width: 100%;
+  border-top: 0.5px solid #b3b3b3;
+  margin: -20px 0 20px 0;
 `;

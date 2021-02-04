@@ -43,8 +43,26 @@ const TracksContainer = props => {
 
         <Tracks>
           <Tracks.Inner>
+            <Tracks.Item>
+              <Tracks.Group size={'80px'}>
+                <Tracks.Order>#</Tracks.Order>
+              </Tracks.Group>
+              <Tracks.Group size={'100%'}>
+                <Tracks.Group size={'50%'} direction="column">
+                  Title
+                </Tracks.Group>
+                <Tracks.Group size="30%">
+                  <Tracks.SubTitle>Album</Tracks.SubTitle>
+                </Tracks.Group>
+                <Tracks.Group size={'20%'} justifyContent="flex-end">
+                  <Tracks.SubTitle>Time</Tracks.SubTitle>
+                </Tracks.Group>
+              </Tracks.Group>
+            </Tracks.Item>
+            <Tracks.Break />
             {tracks.map((el, key) => (
               <Tracks.Item
+                hover
                 key={key}
                 onClick={() => props.onFetchSong(el.id, changeAlias(el.name))}
                 isPlaying={songData && songData.id === el.id && isPlaying}
