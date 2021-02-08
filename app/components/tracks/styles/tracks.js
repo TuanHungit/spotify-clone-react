@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { Link as ReactRouterLink } from 'react-router';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
@@ -63,6 +63,7 @@ export const SubTitle = styled.p`
 export const Title = styled(ReactRouterLink)`
   color: white;
   font-weight: bold;
+  text-decoration: none;
 `;
 
 export const Group = styled.div`

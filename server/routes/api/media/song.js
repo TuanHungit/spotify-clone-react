@@ -2,27 +2,9 @@ const { axios } = require('../../../utils');
 const lrcParser = require('lrc-parser');
 
 exports.getTop100Song = (req, res, next) => {
-  const [popUsId, kpopId, vpopId, BAT] = [
-    'ZWZB96AB',
-    'ZWZB96DC',
-    'ZWZB969E',
-    'ZWZAWEZB'
-  ];
-  let topId;
-  switch (req.params.type) {
-    case kpopId:
-      topId = kpopId;
-      break;
-    case vpopId:
-      topId = vpopId;
-    case popUsId:
-      topId = popUsId;
-    default:
-      topId = BAT;
-  }
   const pageNumber = req.query.page;
   const start = pageNumber ? (pageNumber - 1) * 20 : 0;
-  const url = `https://mp3.zing.vn/xhr/media/get-list?op=top100&start=${start}&length=20&id=${topId}`;
+  const url = `https://mp3.zing.vn/xhr/media/get-list?op=top100&start=${start}&length=20&id=${req.params.type}`;
   axios
     .get(url)
     .then(response => {

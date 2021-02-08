@@ -8,6 +8,7 @@ import heart from '../svgs/heart.svg';
 import library from '../svgs/library.svg';
 import plus from '../svgs/plus.svg';
 import * as ROUTES from '../contanst/routes';
+
 export default function NavContainer() {
   const [category, setCategory] = useState('/');
 

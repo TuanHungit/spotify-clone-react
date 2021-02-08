@@ -48,8 +48,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
 `;
 export const Icon = styled.img`
-  margin-left: 11px;
-  width: 35px;
+  margin-left: ${({ isPlaying }) => (isPlaying ? `2.5px` : '5px')};
+  width: ${({ size }) => (size ? size : '35px')};
   filter: brightness(0) invert(1);
 `;
 

@@ -1,8 +1,12 @@
 import React from 'react';
-import { Container, Item } from './styles/loader';
+import { Container, Bounce1, Bounce3, Bounce2, Bounce4 } from './styles/loader';
 export default function Loading({ children, ...restProps }) {
-  return <Container {...restProps}>{children}</Container>;
+  return (
+    <Container {...restProps}>
+      <Bounce1 />
+      <Bounce2 />
+      <Bounce3 />
+      <Bounce4 />
+    </Container>
+  );
 }
-Loading.Item = function LoadingItem({ children, ...restProps }) {
-  return <Item {...restProps}>{children}</Item>;
-};

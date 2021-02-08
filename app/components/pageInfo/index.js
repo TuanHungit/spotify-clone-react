@@ -37,10 +37,16 @@ PageInfo.Text = function PageInfoText({ children, ...restProps }) {
 PageInfo.Wrapper = function PageInfoWrapper({ children, ...restProps }) {
   return <Wrapper {...restProps}>{children}</Wrapper>;
 };
-PageInfo.PlayIcon = function CardPlayIcon({ src, children, ...restProps }) {
+PageInfo.PlayIcon = function CardPlayIcon({
+  isPlaying,
+  size,
+  src,
+  children,
+  ...restProps
+}) {
   return (
     <PlayIcon {...restProps}>
-      <Icon src={src} />
+      <Icon src={src} isPlaying={isPlaying} size={size} />
       {children}
     </PlayIcon>
   );

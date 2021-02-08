@@ -9,3 +9,4 @@ export { default as Main } from './main';
 export { default as Player } from './player';
 export { default as Header } from './header';
 export { default as PageInfo } from './pageInfo';
+export { default as Karaoke } from './karaoke';

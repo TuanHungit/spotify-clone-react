@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { Link as ReactRouterLink } from 'react-router';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 export const Container = styled.div`
   width: 15%;
@@ -30,7 +30,7 @@ export const Icon = styled.img`
 
 export const Text = styled.p`
   color: #b3b3b3;
-  font-weight: ${({ weight }) => (weight ? weight : '700px')};
+  font-weight: ${({ weight }) => (weight ? weight : '600px')};
   font-size: 14px;
   transition: all 0.6s ease-in-out;
 `;
@@ -80,6 +80,6 @@ export const Title = styled.h1`
 `;
 
 export const Break = styled.div`
-  border-top: 0.5px solid #b3b3b3;
+  border-top: 0.01px solid #282828;
   margin: 10px 12px;
 `;

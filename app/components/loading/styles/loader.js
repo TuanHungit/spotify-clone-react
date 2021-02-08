@@ -1,40 +1,49 @@
-import styled from 'styled-components/macro';
+import styled, { keyframes } from 'styled-components/macro';
+
+const bouncedelay = keyframes`
+ 0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+`;
+export const Bounce1 = styled.div``;
+export const Bounce2 = styled.div``;
+export const Bounce3 = styled.div``;
+export const Bounce4 = styled.div``;
 
 export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`;
-
-export const Item = styled.svg`
-  animation: rotate 1s linear infinite;
-  margin: 40px;
-  width: 50px;
-  height: 50px;
+  margin: 20px auto 0;
+  width: 70px;
   text-align: center;
-  & .path {
-    stroke: #3eb4bf;
-    stroke-linecap: round;
-    animation: dash 1.5s ease-in-out infinite;
+  display: flex;
+
+  justify-content: space-between;
+  & > div {
+    width: 12px;
+    height: 12px;
+    background-color: #b3b3b3;
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: ${bouncedelay} 1.4s infinite ease-in-out both;
+    animation: ${bouncedelay} 1.4s infinite ease-in-out both;
   }
 
-  @keyframes rotate {
-    100% {
-      transform: rotate(360deg);
-    }
+  & ${Bounce1} {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
   }
-  @keyframes dash {
-    0% {
-      stroke-dasharray: 1, 150;
-      stroke-dashoffset: 0;
-    }
-    50% {
-      stroke-dasharray: 90, 150;
-      stroke-dashoffset: -35;
-    }
-    100% {
-      stroke-dasharray: 90, 150;
-      stroke-dashoffset: -124;
-    }
+  & ${Bounce2} {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+  }
+  & ${Bounce3} {
+    -webkit-animation-delay: -0.1s;
+    animation-delay: -0.1s;
+  }
+  & ${Bounce4} {
+    animation: ${bouncedelay} 1.4s infinite ease-in-out both;
   }
 `;

@@ -1,11 +1,25 @@
 import React from 'react';
-import { Route, IndexRoute, Switch } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 
-import { App, Tracks, Category } from './containers';
+// const App = React.lazy(() => import('./containers/App'));
+// const Tracks = React.lazy(() => import('./containers/tracks'));
+// const Category = React.lazy(() => import('./containers/category'));
+import { Category, Tracks, Karaoke } from './containers';
 
-export default (
-  <Route path="/" component={App}>
-    <IndexRoute component={Category} />
-    <Route path="/tracks/:slug" component={Tracks} />
-  </Route>
-);
+const routes = [
+  { path: '/', exact: true, name: 'Home', component: Category },
+  {
+    path: '/tracks/:slug',
+    exact: true,
+    name: 'Tracks',
+    component: Tracks
+  },
+  {
+    path: '/tracks/:slug/karaoke',
+    exact: true,
+    name: 'Karaoke',
+    component: Karaoke
+  }
+];
+
+export default routes;

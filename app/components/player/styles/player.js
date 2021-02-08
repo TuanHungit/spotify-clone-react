@@ -1,9 +1,11 @@
 import styled from 'styled-components/macro';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 export const Container = styled.div`
-  background: #282828;
+  background: #181818;
   text-align: center;
   height: 89px;
+  border-top: 0.01px solid #282828;
   display: flex;
   align-items: center;
   margin: 0;
@@ -63,12 +65,12 @@ export const TimeSeek = styled.span`
   color: #b3b3b3;
   font-weight: 500;
 `;
-export const WrapperIcon = styled.div`
+export const WrapperIcon = styled(ReactRouterLink)`
   width: 35px;
   border-radius: 50%;
   display: flex;
   align-items: center;
-  margin: 0 7px;
+  margin: 0 7px 5px 7px;
   justify-content: center;
   ${({ background }) =>
     background

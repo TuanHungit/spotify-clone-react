@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { Link as ReactRouterLink } from 'react-router';
+import { Link as ReactRouterLink } from 'react-router-dom';
 export const PlayIcon = styled.span`
   width: 45px;
   height: 45px;
@@ -10,9 +10,9 @@ export const PlayIcon = styled.span`
   opacity: 0;
   position: relative;
   left: 6.2rem;
-  bottom: 4.2rem;
+
   margin: 0;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   top: 2.2rem;
 `;
 export const Container = styled(ReactRouterLink)`

@@ -10,7 +10,14 @@ import * as SVG from '../svgs';
 import { formatTime } from '../utils/func';
 
 const PlayerContainer = props => {
-  const { songData, isFetching, onSetPlaying, isPlaying } = props;
+  const {
+    songData,
+    isFetching,
+    onSetPlaying,
+    isPlaying,
+    routing,
+    playerState
+  } = props;
   const audioRef = useRef();
   const [duration, setDuration] = useState(0);
   const [loop, setLoop] = useState(false);
@@ -31,7 +38,10 @@ const PlayerContainer = props => {
     }
     onSetPlaying(!isPlaying);
   };
-
+  const handleTimeUpdate = () => {
+    const lyric = songData.lyric;
+    const { lyric1, lyric2 } = playerState;
+  };
   return (
     <Player>
       <Player.Group size="30%" justifyContent="flex-start">
@@ -100,7 +110,9 @@ const PlayerContainer = props => {
         </Player.Group>
       </Player.Group>
       <Player.Group size="30%" justifyContent="flex-end">
-        <Player.WrapperIcon>
+        <Player.WrapperIcon
+          to={`${routing.locationBeforeTransitions.pathname}/karaoke`}
+        >
           <Player.Icon src={SVG.lyrics} />
         </Player.WrapperIcon>
         <Player.WrapperIcon>
@@ -119,18 +131,21 @@ PlayerContainer.propTypes = {
 };
 
 const mapStateToProps = state => {
-  const { songState, routing, uiState } = state;
+  const { songState, routing, uiState, playerState } = state;
   return {
     songData: songState.data,
     isFetching: songState.isFetching,
     isPlaying: uiState.isPlaying,
-    routing
+    routing,
+    playerState
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     onFetchSong: (id, name) => dispatch(actionCreator.fetchSong(id, name)),
-    onSetPlaying: isPlaying => dispatch(actionCreator.setPlaying(isPlaying))
+    onSetPlaying: isPlaying => dispatch(actionCreator.setPlaying(isPlaying)),
+    onUpdateLyric: percent =>
+      dispatch(actionCreator.updatePlayedPercent(percent))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerContainer);

@@ -1,17 +1,18 @@
 import React from 'react';
-import Nav from './nav';
-import Main from './main';
 
+import Nav from './nav';
+import Content from './content';
 import Player from './player';
-import { Main as MainComponent } from '../components';
-export default () => {
+import { Main } from '../components';
+
+export default props => {
   return (
     <React.Fragment>
-      <MainComponent.Group>
-        <Nav />
-        <Main />
-      </MainComponent.Group>
-      <Player />
+      <Main.Group>
+        <Nav {...props} />
+        <Content {...props} />
+      </Main.Group>
+      <Player {...props} />
     </React.Fragment>
   );
 };
