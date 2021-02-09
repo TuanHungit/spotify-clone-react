@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Player, LinksByComma } from '../components';
-import { requestInterval, clearRequestInterval } from '../requestInterval';
+import initAnalyzer from '../utils/initAnalyzer';
 import * as actionCreator from '../actions';
 import * as SVG from '../svgs';
 import { formatTime } from '../utils/func';
@@ -29,6 +29,7 @@ const PlayerContainer = ({
     setDuration(audioRef.current.duration);
     onSetPlaying(true);
     audioRef.current.play();
+    initAnalyzer(audioRef.current);
   };
 
   const handlePausePlayClick = () => {

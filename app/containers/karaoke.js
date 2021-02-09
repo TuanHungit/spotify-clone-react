@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Karaoke } from '../components';
+import { Karaoke, Analyzer } from '../components';
 import * as actionCreator from '../actions';
 
 const KaraokeContainer = props => {
@@ -9,7 +9,9 @@ const KaraokeContainer = props => {
   const { lyric, isFetching } = props;
   return (
     <Karaoke>
-      <Karaoke.Text>{lyric1.text}</Karaoke.Text>
+      <Karaoke.Text>
+        {lyric1.text ? lyric1.text : "Sorry, We can't find lyric!"}
+      </Karaoke.Text>
       <Karaoke.Text>{lyric2.text}</Karaoke.Text>
     </Karaoke>
   );
