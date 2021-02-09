@@ -3,7 +3,8 @@ import * as TYPES from '../contanst/action-types';
 export const updateLyric = (lyric1, lyric2) => {
   return {
     type: TYPES.UPDATE_LYRIC,
-    lyrics: { lyric1, lyric2 }
+    lyric1,
+    lyric2
   };
 };
 

@@ -11,7 +11,11 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case TYPES.UPDATE_LYRIC:
-      return action.lyrics;
+      return {
+        ...state,
+        lyric1: action.lyric1,
+        lyric2: action.lyric2
+      };
 
     case TYPES.UPDATE_LYRIC_PERCENT:
       return Object.assign({}, state, action.payload);

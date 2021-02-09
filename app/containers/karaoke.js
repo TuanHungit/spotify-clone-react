@@ -9,8 +9,8 @@ const KaraokeContainer = props => {
   const { lyric, isFetching } = props;
   return (
     <Karaoke>
-      <Karaoke.Text>{lyric1}</Karaoke.Text>
-      <Karaoke.Text>{lyric2}</Karaoke.Text>
+      <Karaoke.Text>{lyric1.text}</Karaoke.Text>
+      <Karaoke.Text>{lyric2.text}</Karaoke.Text>
     </Karaoke>
   );
 };

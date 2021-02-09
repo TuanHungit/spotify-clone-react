@@ -15,5 +15,25 @@ export const GlobalStyles = createGlobalStyle`
   -moz-osx-font-smoothing: grayscale;
         
     }
+      ::-webkit-scrollbar {
+    width: 10px;
+   
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #b3b3b3; 
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #777; 
+    
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
    
 `;

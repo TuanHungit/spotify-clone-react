@@ -9,19 +9,20 @@ import * as actionCreator from '../actions';
 import * as SVG from '../svgs';
 import { formatTime } from '../utils/func';
 
-const PlayerContainer = props => {
-  const {
-    songData,
-    isFetching,
-    onSetPlaying,
-    isPlaying,
-    routing,
-    playerState
-  } = props;
+const PlayerContainer = ({
+  songData,
+  isFetching,
+  onSetPlaying,
+  isPlaying,
+  routing,
+  playerState,
+  onUpdateLyric,
+  onUpdateLyricPercent,
+  ...props
+}) => {
   const audioRef = useRef();
   const [duration, setDuration] = useState(0);
   const [loop, setLoop] = useState(false);
-
   const [currentTime, setCurrentTime] = useState(0);
 
   const onLoadedData = () => {
@@ -41,6 +42,24 @@ const PlayerContainer = props => {
   const handleTimeUpdate = () => {
     const lyric = songData.lyric;
     const { lyric1, lyric2 } = playerState;
+    const len = lyric.length;
+    if (
+      audioRef.current.currentTime > lyric[len - 1].end ||
+      audioRef.currentTime
+    ) {
+      onUpdateLyric([], []);
+    }
+    for (let i = 0; i < len; i++) {
+      if (
+        i < len - 1 &&
+        i % 2 == 0 &&
+        audioRef.current.currentTime >= lyric[i].start &&
+        audioRef.current.currentTime <= lyric[i + 1].end
+      ) {
+        onUpdateLyric(lyric[i], lyric[i + 1]);
+      }
+    }
+    setCurrentTime(audioRef.current.currentTime);
   };
   return (
     <Player>
@@ -53,7 +72,7 @@ const PlayerContainer = props => {
               crossOrigin="anonymous"
               loop={loop}
               onLoadedData={onLoadedData}
-              onTimeUpdate={() => setCurrentTime(audioRef.current.currentTime)}
+              onTimeUpdate={handleTimeUpdate}
               onEnded={() => setPlaying(false)}
             />
             <Player.Image src={songData.thumbnail} alt="thumbnail" />
@@ -79,7 +98,7 @@ const PlayerContainer = props => {
             <Player.Icon src={SVG.shuffleStracks} opacity={0.5} />
           </Player.WrapperIcon>
           <Player.WrapperIcon>
-            <Player.Icon src={SVG.prevStacks} opacity={0.5} />
+            <Player.Icon src={SVG.prevStacks} opacity={0.5} size="20px" />
           </Player.WrapperIcon>
           <Player.WrapperIcon background="white">
             <Player.Icon
@@ -89,7 +108,12 @@ const PlayerContainer = props => {
             />
           </Player.WrapperIcon>
           <Player.WrapperIcon>
-            <Player.Icon src={SVG.prevStacks} rotate={'180deg'} opacity={0.5} />
+            <Player.Icon
+              src={SVG.prevStacks}
+              rotate={'180deg'}
+              size="20px"
+              opacity={0.5}
+            />
           </Player.WrapperIcon>
           <Player.WrapperIcon>
             <Player.Icon src={SVG.repeatStracks} opacity={0.5} />
@@ -111,7 +135,11 @@ const PlayerContainer = props => {
       </Player.Group>
       <Player.Group size="30%" justifyContent="flex-end">
         <Player.WrapperIcon
-          to={`${routing.locationBeforeTransitions.pathname}/karaoke`}
+          to={`${
+            props.location
+              ? props.location.pathname
+              : routing.locationBeforeTransitions.pathname
+          }/karaoke`}
         >
           <Player.Icon src={SVG.lyrics} />
         </Player.WrapperIcon>
@@ -127,7 +155,12 @@ PlayerContainer.propTypes = {
   songdata: PropTypes.object.isRequired,
   fetchSong: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  isPlaying: PropTypes.bool.isRequired
+  isPlaying: PropTypes.bool.isRequired,
+  routing: PropTypes.object.isRequired,
+  playerState: PropTypes.object.isRequired,
+  onSetPlaying: PropTypes.func.isRequired,
+  onUpdateLyric: PropTypes.func.isRequired,
+  onUpdateLyricPercent: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
@@ -144,8 +177,9 @@ const mapDispatchToProps = dispatch => {
   return {
     onFetchSong: (id, name) => dispatch(actionCreator.fetchSong(id, name)),
     onSetPlaying: isPlaying => dispatch(actionCreator.setPlaying(isPlaying)),
-    onUpdateLyric: percent =>
-      dispatch(actionCreator.updatePlayedPercent(percent))
+    onUpdateLyric: (lyric1, lyric2) =>
+      dispatch(actionCreator.updateLyric(lyric1, lyric2)),
+    onUpdateLyricPercent: () => dispatch(actionCreator.updateLyricsPercent())
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerContainer);

@@ -47,7 +47,7 @@ export const Button = styled.button`
 `;
 
 export const Icon = styled.img`
-  width: 30px;
+  width: ${({ size }) => (size ? size : '30px')};
   padding-left: ${({ isPlaying }) => (isPlaying ? `0.5px` : '3px')};
   filter: brightness(0) invert(${({ opacity }) => (opacity ? opacity : 1)});
   ${({ opacity }) =>

@@ -7,7 +7,7 @@ export const UpperNav = styled.div`
   display: flex;
   align-items: center;
   color: white;
-  padding: 0.5rem 2rem;
+  padding: 0.6rem 2rem;
   position: fixed;
   top: 0;
   z-index: 2;

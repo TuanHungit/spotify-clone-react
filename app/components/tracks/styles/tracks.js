@@ -8,6 +8,7 @@ export const Container = styled.div`
   background-color: rgba(0, 0, 0, 0.1);
   padding-bottom: 0 0 100px -20px;
   color: white;
+
   justify-content: center;
   @media (max-width: 1000px) {
     font-size: 12px;
