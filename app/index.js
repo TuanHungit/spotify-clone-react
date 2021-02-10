@@ -6,6 +6,7 @@ import { GlobalStyles } from './global-styles';
 import App from './containers/App';
 import store from './store';
 import './styles/input-range/input-range.scss';
+import './styles/base.scss';
 import { Provider } from 'react-redux';
 import history from './history';
 

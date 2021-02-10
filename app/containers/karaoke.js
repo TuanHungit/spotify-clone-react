@@ -15,12 +15,11 @@ const KaraokeContainer = ({
 
   useEffect(() => {
     onSetShowAnalyzer(true);
+    return () => onSetShowAnalyzer(false);
   }, []);
   return (
     <Karaoke>
-      <Karaoke.Text>
-        {lyric1.text ? lyric1.text : "Sorry, We can't find lyric!"}
-      </Karaoke.Text>
+      <Karaoke.Text>{lyric1.text}</Karaoke.Text>
       <Karaoke.Text>{lyric2.text}</Karaoke.Text>
     </Karaoke>
   );

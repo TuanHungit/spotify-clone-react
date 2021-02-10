@@ -3,14 +3,19 @@ import InputRange from 'react-input-range';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import {
+  clearRequestInterval,
+  requestInterval
+} from '../utils/requestInterval';
 import { Player, LinksByComma } from '../components';
-import initAnalyzer from '../utils/initAnalyzer';
+import { initAnalyzer, resetAnalyzer } from '../utils/initAnalyzer';
 import * as actionCreator from '../actions';
 import * as SVG from '../svgs';
-import { formatTime } from '../utils/func';
+import { formatTime, changeAlias } from '../utils/func';
 
 const PlayerContainer = ({
   songData,
+
   isFetching,
   onSetPlaying,
   isPlaying,
@@ -27,9 +32,9 @@ const PlayerContainer = ({
 
   const onLoadedData = () => {
     setDuration(audioRef.current.duration);
+    audioRef.current.play();
     onSetPlaying(true);
     initAnalyzer(audioRef.current);
-    audioRef.current.play();
   };
 
   const onPlay = () => {
@@ -159,11 +164,7 @@ const PlayerContainer = ({
       </Player.Group>
       <Player.Group size="30%" justifyContent="flex-end">
         <Player.WrapperIcon
-          to={`${
-            props.location
-              ? props.location.pathname
-              : routing.locationBeforeTransitions.pathname
-          }/karaoke`}
+          to={songData ? `/tracks/${changeAlias(songData.name)}/karaoke` : '#'}
         >
           <Player.Icon src={SVG.lyrics} />
         </Player.WrapperIcon>

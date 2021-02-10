@@ -7,7 +7,7 @@ export const Container = styled.div`
   bottom: 90px;
   height: 150px;
   display: ${({ isAnalyzerShowing }) => (isAnalyzerShowing ? 'block' : 'none')};
-  z-index: 10;
+  z-index: 1;
   @media (max-width: 1000px) {
     width: 100%;
     left: 0;

@@ -21,6 +21,9 @@ function initAnalyzer(audio) {
   analyser.connect(context.destination);
   frameLooper();
 }
+function resetAnalyzer() {
+  context.close();
+}
 
 function frameLooper() {
   window.requestAnimationFrame(frameLooper);
@@ -40,4 +43,4 @@ function frameLooper() {
   }
 }
 
-export default initAnalyzer;
+export { initAnalyzer, resetAnalyzer };

@@ -19,8 +19,7 @@ export const Content = styled.div`
 export const Title = styled.p`
   font-size: ${({ size }) => (size ? `size` : '5.5rem')};
   margin: 0;
-  line-height: 1;
-  font-weight: bold;
+  font-weight: bolder;
   ${({ uppercase }) => (uppercase ? `text-transform: uppercase;` : '')}
 `;
 export const SubTitle = styled.p`

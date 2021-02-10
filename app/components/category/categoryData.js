@@ -1,11 +1,11 @@
 export default [
   {
-    id: 'ZWZB96AB',
-    name: 'TOP 100 KPOP',
-    slug: 'top-100-kpop',
+    id: 'ZWZBBFI9',
+    name: 'Những bài hát hay nhất của Hoài Lâm',
+    slug: 'Nhung-Bai-Hat-Hay-Nhat-Cua-Hoai-Lam-Hoai-Lam',
     img:
-      'https://images.unsplash.com/photo-1587223075055-82e9a937ddff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2700&q=80',
-    desc: 'Top 100 bài hát Hàn Quốc 2021'
+      'https://photo-resize-zmp3.zadn.vn/w165_r1x1_jpeg/cover/5/b/3/a/5b3a3bcbd307bb515c356b0e81479ae5.jpg',
+    desc: 'Tuyển Tập Các Bài Hát Hay Nhất Của Hoài Lâm'
   },
   {
     id: 'ZWZB969E',
@@ -16,7 +16,7 @@ export default [
     desc: 'Top 100 bài hát Việt Nam 2021'
   },
   {
-    id: 'ZWZB96DC',
+    id: 'ZWZB96AB',
     name: 'TOP 100 US/UK',
     slug: 'top-100-usuk',
     img:

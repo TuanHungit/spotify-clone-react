@@ -19,7 +19,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   position: absolute;
-
+  z-index: 0;
   @media (max-width: 1000px) {
     ${Text} {
       font-size: 48px;

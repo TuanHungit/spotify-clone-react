@@ -79,11 +79,15 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(eot|ttf|woff|woff2|otf)$/,
         use: [
           {
             loader: 'file-loader',
-            options: {}
+            options: {
+              name: '[name].[ext]',
+              limit: 10000,
+              mimetype: 'application/font-woff'
+            }
           }
         ]
       }
