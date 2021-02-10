@@ -1,7 +1,8 @@
 import * as TYPES from '../contanst/action-types';
 const initialState = {
   isFading: false,
-  isPlaying: false
+  isPlaying: false,
+  isAnalyzerShowing: false
 };
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -14,6 +15,8 @@ export default (state = initialState, action) => {
         ...state,
         isPlaying: action.isPlaying
       };
+    case TYPES.SET_SHOW_ANALYZER:
+      return { ...state, isAnalyzerShowing: action.isShowing };
     default:
       return state;
   }

@@ -15,11 +15,15 @@ export const UpperNav = styled.div`
 export const Content = styled.div``;
 export const Container = styled.div`
   width: 85%;
+
   overflow-y: scroll;
   position: relative;
   padding-top: 4rem;
   ${Content} {
     color: white;
+  }
+  @media (max-width: 1000px) {
+    width: 100%;
   }
 `;
 export const Group = styled.div`

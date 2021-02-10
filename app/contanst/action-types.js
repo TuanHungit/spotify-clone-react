@@ -7,6 +7,7 @@ export const FETCH_TRACKS_FAILURE = 'FETCH_TRACKS_FAILURE';
 export const START_FADING = 'START_FADING';
 export const STOP_FADING = 'STOP_FADING';
 export const SET_PLAYING = 'SET_PLAYING';
+export const SET_SHOW_ANALYZER = 'SET_SHOW_ANALYZER';
 
 //actions for song
 export const START_FETCH_SONG = 'START_FETCH_SONG';

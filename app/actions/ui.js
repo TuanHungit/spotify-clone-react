@@ -8,3 +8,7 @@ export const stopFading = () => {
 export const setPlaying = isPlaying => {
   return { type: TYPES.SET_PLAYING, isPlaying };
 };
+
+export const setShowAnalyzer = isShowing => {
+  return { type: TYPES.SET_SHOW_ANALYZER, isShowing };
+};

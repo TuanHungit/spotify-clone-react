@@ -5,6 +5,9 @@ export const Container = styled.div`
   width: 15%;
   height: 100%;
   background: #040404;
+  @media (max-width: 1000px) {
+    display: none;
+  }
 `;
 export const ListItem = styled.ul`
   display: flex;

@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { Karaoke, Analyzer } from '../components';
 import * as actionCreator from '../actions';
 
-const KaraokeContainer = props => {
-  const { per1, per2, lyric1, lyric2 } = props.playerState;
-  const { lyric, isFetching } = props;
+const KaraokeContainer = ({
+  lyric,
+  isFetching,
+  isAnalyzerShowing,
+  playerState,
+  onSetShowAnalyzer
+}) => {
+  const { per1, per2, lyric1, lyric2 } = playerState;
+
+  useEffect(() => {
+    onSetShowAnalyzer(true);
+  }, []);
   return (
     <Karaoke>
       <Karaoke.Text>
@@ -18,16 +27,19 @@ const KaraokeContainer = props => {
 };
 
 const mapStateToProps = state => {
-  const { playerState, songState } = state;
+  const { playerState, songState, uiState } = state;
   return {
     playerState,
+    isAnalyzerShowing: uiState.isAnalyzerShowing,
     lyric: songState.data ? songState.data.lyric : null,
     isFetching: songState.isFetching
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdatePlayedPercent: () => dispatch(actionCreator.updatePlayedPercent())
+    onUpdatePlayedPercent: () => dispatch(actionCreator.updatePlayedPercent()),
+    onSetShowAnalyzer: isShowing =>
+      dispatch(actionCreator.setShowAnalyzer(isShowing))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(KaraokeContainer);

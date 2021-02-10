@@ -28,10 +28,18 @@ const PlayerContainer = ({
   const onLoadedData = () => {
     setDuration(audioRef.current.duration);
     onSetPlaying(true);
-    audioRef.current.play();
     initAnalyzer(audioRef.current);
+    audioRef.current.play();
   };
 
+  const onPlay = () => {
+    console.log('start analyzer');
+  };
+
+  const onEnded = () => {
+    onSetPlaying(false);
+    setCurrentTime(0);
+  };
   const handlePausePlayClick = () => {
     if (isPlaying) {
       audioRef.current.pause();
@@ -62,6 +70,18 @@ const PlayerContainer = ({
     }
     setCurrentTime(audioRef.current.currentTime);
   };
+  const onHandleChange = value => {
+    setCurrentTime(value);
+  };
+  const onHandleChangeComplete = value => {
+    if (value == duration) {
+      onUpdateLyric([], []);
+    }
+    audioRef.current.play();
+    console.log(value);
+
+    audioRef.current.currentTime = value;
+  };
   return (
     <Player>
       <Player.Group size="30%" justifyContent="flex-start">
@@ -72,9 +92,10 @@ const PlayerContainer = ({
               src={songData.source && songData.source['128']}
               crossOrigin="anonymous"
               loop={loop}
+              onPlay={onPlay}
               onLoadedData={onLoadedData}
               onTimeUpdate={handleTimeUpdate}
-              onEnded={() => setPlaying(false)}
+              onEnded={onEnded}
             />
             <Player.Image src={songData.thumbnail} alt="thumbnail" />
             <Player.Group size={'50%'} direction="column">
@@ -128,6 +149,8 @@ const PlayerContainer = ({
             maxValue={duration}
             minValue={0}
             value={parseInt(currentTime, 10)}
+            onChange={onHandleChange}
+            onChangeComplete={onHandleChangeComplete}
           />
           <Player.TimeSeek>
             {duration ? formatTime(duration) : '0:00'}

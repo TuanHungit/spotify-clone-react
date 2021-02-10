@@ -30,7 +30,7 @@ function frameLooper() {
 
   ctx.fillStyle = 'white';
 
-  bars = 150;
+  bars = 200;
   for (let i = 0; i < bars; i++) {
     barX = i * 2;
     barWidth = 1;
