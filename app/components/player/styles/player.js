@@ -64,6 +64,8 @@ export const TimeSeek = styled.span`
   font-size: 13px;
   color: #b3b3b3;
   font-weight: 500;
+  width: 100%;
+  max-width: 30px;
 `;
 export const WrapperIcon = styled(ReactRouterLink)`
   width: 35px;
@@ -84,3 +86,14 @@ export const WrapperIcon = styled(ReactRouterLink)`
     transform: scale(1.07);
   }
 `;
+
+export const SoundIconContainer = styled.div`
+  width: 32px;
+  height: 32px;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+`;
+export const SoundIconOff = styled.div``;
+export const SoundIconOne = styled.div``;
+export const SoundIconTwo = styled.div``;

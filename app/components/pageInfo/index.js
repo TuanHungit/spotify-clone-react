@@ -11,8 +11,12 @@ import {
   Icon,
   PlayIcon
 } from './styles/pageInfo';
-export default function PageInfo({ children, ...restProps }) {
-  return <Container {...restProps}>{children}</Container>;
+export default function PageInfo({ bg = true, children, ...restProps }) {
+  return (
+    <Container bg={bg} {...restProps}>
+      {children}
+    </Container>
+  );
 }
 
 PageInfo.Title = function PageInfoTitle({ children, ...restProps }) {

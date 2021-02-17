@@ -8,7 +8,6 @@ export const Container = styled.div`
   background-color: rgba(0, 0, 0, 0.1);
   padding-bottom: 0 0 100px -20px;
   color: white;
-
   justify-content: center;
   @media (max-width: 1000px) {
     font-size: 12px;
@@ -39,8 +38,9 @@ export const Icon = styled.img`
     isPlaying
       ? `
           color: #1db954;
-          width: 24px;
-          filter:none;
+          width: 16px;
+          filter: none;
+         margin-left: 0px;
           content:url("https://open.scdn.co/cdn/images/equaliser-animated-green.73b73928.gif");
           display:block;`
       : ``}

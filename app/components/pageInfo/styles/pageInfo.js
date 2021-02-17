@@ -1,13 +1,17 @@
 import styled from 'styled-components/macro';
 
 export const Container = styled.div`
-  background-color: rgb(182, 250, 206);
   max-height: 85vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.1), #121212 95%);
+  ${({ bg }) =>
+    bg
+      ? `
+      background-color: rgb(182, 250, 206);
+      background-image: linear-gradient(rgba(0, 0, 0, 0.1), #121212 95%);`
+      : ''}
 `;
 export const Image = styled.img`
-  height: 200px;
-  width: 200px;
+  height: 232px;
+  width: 232px;
   object-fit: cover;
   -webkit-box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
   box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
@@ -16,10 +20,10 @@ export const Content = styled.div`
   text-align: left;
   padding: 0 2rem;
 `;
-export const Title = styled.p`
-  font-size: ${({ size }) => (size ? `size` : '5.5rem')};
-  margin: 0;
+export const Title = styled.h1`
   font-weight: bolder;
+  font-size: ${({ size }) => (size ? size : '96px')};
+
   ${({ uppercase }) => (uppercase ? `text-transform: uppercase;` : '')}
 `;
 export const SubTitle = styled.p`

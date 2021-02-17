@@ -5,9 +5,13 @@ import { startFading, stopFading } from './ui';
 
 let cachedId = 'ZWZB96AB';
 
-export function fetchTracks(page, id = 'ZWZB96AB') {
+export function fetchTracks(page, id = 'ZWZB96AB', isLoadMore = false) {
   return dispatch => {
-    dispatch({ type: TYPES.START_FETCHING_TRACKS });
+    if (isLoadMore) {
+      dispatch({ type: TYPES.START_FETCHING_MORE_TRACKS });
+    } else {
+      dispatch({ type: TYPES.START_FETCHING_TRACKS });
+    }
     if (id !== cachedId) {
       dispatch(startFading());
       cachedId = id;
@@ -34,3 +38,6 @@ export function fetchTracks(page, id = 'ZWZB96AB') {
       });
   };
 }
+export const clearTracks = () => {
+  return { type: TYPES.CLEAR_TRACKS };
+};

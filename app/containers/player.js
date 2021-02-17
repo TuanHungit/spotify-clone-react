@@ -58,14 +58,14 @@ const PlayerContainer = ({
     const { lyric1, lyric2 } = playerState;
     const len = lyric.length;
     if (
-      audioRef.current.currentTime > lyric[len - 1].end ||
-      audioRef.currentTime
+      audioRef.current.currentTime > lyric[lyric.length - 1].end ||
+      audioRef.current.currentTime
     ) {
       onUpdateLyric([], []);
     }
-    for (let i = 0; i < len; i++) {
+    for (let i = 0; i < lyric.length; i++) {
       if (
-        i < len - 1 &&
+        i < lyric.length - 1 &&
         i % 2 == 0 &&
         audioRef.current.currentTime >= lyric[i].start &&
         audioRef.current.currentTime <= lyric[i + 1].end
@@ -168,7 +168,9 @@ const PlayerContainer = ({
         >
           <Player.Icon src={SVG.lyrics} />
         </Player.WrapperIcon>
-        <Player.WrapperIcon>
+        <Player.WrapperIcon
+          to={songData ? `/tracks/${changeAlias(songData.name)}/queue` : '#'}
+        >
           <Player.Icon src={SVG.queueStracks} />
         </Player.WrapperIcon>
       </Player.Group>

@@ -2,8 +2,8 @@ import * as TYPES from '../contanst/action-types';
 
 const initialState = {
   playedPercent: undefined,
-  lyric1: '',
-  lyric2: '',
+  lyric1: [],
+  lyric2: [],
   per1: 0,
   per2: 0
 };

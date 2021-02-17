@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import { Karaoke, Analyzer } from '../components';
@@ -17,10 +17,11 @@ const KaraokeContainer = ({
     onSetShowAnalyzer(true);
     return () => onSetShowAnalyzer(false);
   }, []);
+  console.log(lyric1, lyric2);
   return (
     <Karaoke>
-      <Karaoke.Text>{lyric1.text}</Karaoke.Text>
-      <Karaoke.Text>{lyric2.text}</Karaoke.Text>
+      <Karaoke.Text active={lyric1.length !== 0}> {lyric1.text}</Karaoke.Text>
+      <Karaoke.Text active={lyric2.length !== 0}> {lyric2.text}</Karaoke.Text>
     </Karaoke>
   );
 };

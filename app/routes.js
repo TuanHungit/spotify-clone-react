@@ -4,7 +4,7 @@ import { Route, IndexRoute } from 'react-router';
 // const App = React.lazy(() => import('./containers/App'));
 // const Tracks = React.lazy(() => import('./containers/tracks'));
 // const Category = React.lazy(() => import('./containers/category'));
-import { Category, Tracks, Karaoke } from './containers';
+import { Category, Tracks, Karaoke, Queue } from './containers';
 
 const routes = [
   { path: '/', exact: true, name: 'Home', component: Category },
@@ -19,6 +19,12 @@ const routes = [
     exact: true,
     name: 'Karaoke',
     component: Karaoke
+  },
+  {
+    path: '/tracks/:slug/queue',
+    exact: true,
+    name: 'Queue',
+    component: Queue
   }
 ];
 

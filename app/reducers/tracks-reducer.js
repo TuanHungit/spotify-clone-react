@@ -4,7 +4,8 @@ const initialState = {
   activeId: '',
   tracks: [],
   pageLoaded: 1,
-  isLoading: false
+  isLoading: false,
+  isLoadMore: false
 };
 
 const fetchTracksSuccess = (state, action) => {
@@ -22,7 +23,8 @@ const fetchTracksSuccess = (state, action) => {
     pageLoaded,
     tracks,
     activeId: action.id,
-    isLoading: false
+    isLoading: false,
+    isLoadMore: false
   };
 };
 export default function (state = initialState, action) {
@@ -33,6 +35,12 @@ export default function (state = initialState, action) {
       return fetchTracksSuccess(state, action);
     case TYPES.FETCH_TRACKS_FAILURE:
       return { ...state, isLoading: false };
+    case TYPES.FETCH_MORE_TRACKS_SUCCESS:
+      return { ...state, isLoadMore: false };
+    case TYPES.START_FETCHING_MORE_TRACKS:
+      return { ...state, isLoadMore: true };
+    case TYPES.CLEAR_TRACKS:
+      return { ...initialState };
     default:
       return state;
   }

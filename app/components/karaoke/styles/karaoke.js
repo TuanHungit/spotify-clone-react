@@ -9,6 +9,9 @@ export const Text = styled.div`
   max-width: 900px;
   padding: 50px 50px;
   text-align: left;
+  transition: opacity 1s ease-out;
+
+  ${({ active }) => (active ? `opacity: 1` : `opacity: 0`)};
 `;
 
 export const Container = styled.div`

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actionCreator from '../actions';
@@ -10,16 +10,17 @@ import * as SVG from '../svgs';
 import { changeAlias } from './../utils/func';
 import { formatTime } from '../utils/func';
 import dataCategories from '../components/category/categoryData';
-import { Route } from 'react-router';
 
 const TracksContainer = props => {
-  const { tracks, isLoading, songData, isPlaying } = props;
-  // const { id, name, img, desc } = props.location.state;
+  const { tracks, isLoading, isLoadMore, songData, isPlaying } = props;
+
   const { id, name, img, desc } = props.location.state
     ? props.location.state
     : dataCategories.find(el => el.slug === props.match.params.slug);
+
   useEffect(() => {
     props.onFetchTracks(1, id);
+    return () => props.onClearTracks();
   }, []);
 
   return (
@@ -30,7 +31,7 @@ const TracksContainer = props => {
             <PageInfo.Group padding="30px">
               <PageInfo.Image src={img} />
               <PageInfo.Content>
-                <PageInfo.Title uppercase size="10px">
+                <PageInfo.Title uppercase size="12px">
                   Playplist
                 </PageInfo.Title>
                 <PageInfo.Title>{name}</PageInfo.Title>
@@ -123,7 +124,7 @@ const TracksContainer = props => {
                     </Tracks.Group>
                   </Tracks.Item>
                 ))}
-                {/* isLoading &&{<Loader />} */}
+                {isLoadMore && <Loader />}
               </Tracks.Inner>
             </Tracks>
           </PageInfo.Wrapper>
@@ -139,7 +140,8 @@ TracksContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isFading: PropTypes.bool.isRequired,
   songData: PropTypes.object.isRequired,
-  isPlaying: PropTypes.bool.isRequired
+  isPlaying: PropTypes.bool.isRequired,
+  isLoadMore: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => {
@@ -148,17 +150,16 @@ const mapStateToProps = state => {
     isLoading: state.tracksState.isLoading,
     isFading: state.uiState.isFading,
     songData: state.songState.data,
-    isPlaying: state.uiState.isPlaying
+    isPlaying: state.uiState.isPlaying,
+    isLoadMore: state.tracksState.isLoadMore
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     onFetchTracks: (page, tracksId) =>
       dispatch(actionCreator.fetchTracks(page, tracksId)),
+    onClearTracks: () => dispatch(actionCreator.clearTracks()),
     onFetchSong: (id, name) => dispatch(actionCreator.fetchSong(id, name))
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(InfiniteScroll(TracksContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(TracksContainer);

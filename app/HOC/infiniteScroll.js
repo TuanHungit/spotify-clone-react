@@ -12,23 +12,21 @@ export default function (InnerComponent) {
       super(props);
       this.onScroll = this.onScroll.bind(this);
     }
-
     componentDidMount() {
-      this.nv.addEventListener('scroll', this.onScroll, false);
+      window.addEventListener('scroll', this.onScroll, false);
     }
 
     componentWillUnmount() {
-      this.nv.removeEventListener('scroll', this.onScroll, false);
+      window.removeEventListener('scroll', this.onScroll, false);
     }
-
     onScroll() {
       _throttle(() => {
         if (
           window.scrollY + window.innerHeight >=
-          this.nv.clientHeight + this.nv.offsetHeight
+          document.body.offsetHeight - 200
         ) {
           if (
-            (this.props.pageLoaded < NUMBER_OF_PAGES) &
+            this.props.pageLoaded < NUMBER_OF_PAGES &&
             !this.props.isLoading
           ) {
             console.log(this.nv.clientHeight);
@@ -40,11 +38,7 @@ export default function (InnerComponent) {
     }
 
     render() {
-      return (
-        <div ref={elem => (this.nv = elem)}>
-          <InnerComponent {...this.props} />
-        </div>
-      );
+      return <InnerComponent {...this.props} />;
     }
   }
 

@@ -15,7 +15,8 @@ export const Bounce3 = styled.div``;
 export const Bounce4 = styled.div``;
 
 export const Container = styled.div`
-  margin: 20px auto 0;
+  margin: 30px auto 30px;
+
   width: 70px;
   text-align: center;
   display: flex;
