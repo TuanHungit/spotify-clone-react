@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { Karaoke, Analyzer } from '../components';
+import { Karaoke, Loader } from '../components';
 import * as actionCreator from '../actions';
 
 const KaraokeContainer = ({
@@ -20,7 +20,8 @@ const KaraokeContainer = ({
   console.log(lyric1, lyric2);
   return (
     <Karaoke>
-      <Karaoke.Text active={lyric1.length !== 0}> {lyric1.text}</Karaoke.Text>
+      {lyric1.length === 0 && <Loader color="white" center />}
+      <Karaoke.Text active={lyric1.length !== 0}>{lyric1.text}</Karaoke.Text>
       <Karaoke.Text active={lyric2.length !== 0}> {lyric2.text}</Karaoke.Text>
     </Karaoke>
   );

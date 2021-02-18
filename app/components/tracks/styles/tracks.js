@@ -3,7 +3,6 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
-  min-height: 200px;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.1);
   padding-bottom: 0 0 100px -20px;

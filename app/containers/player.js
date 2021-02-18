@@ -15,7 +15,7 @@ import { formatTime, changeAlias } from '../utils/func';
 
 const PlayerContainer = ({
   songData,
-
+  onAddSongToQueue,
   isFetching,
   onSetPlaying,
   isPlaying,
@@ -23,6 +23,7 @@ const PlayerContainer = ({
   playerState,
   onUpdateLyric,
   onUpdateLyricPercent,
+  tracks,
   ...props
 }) => {
   const audioRef = useRef();
@@ -34,12 +35,11 @@ const PlayerContainer = ({
     setDuration(audioRef.current.duration);
     audioRef.current.play();
     onSetPlaying(true);
+    onAddSongToQueue(songData, tracks);
     initAnalyzer(audioRef.current);
   };
 
-  const onPlay = () => {
-    console.log('start analyzer');
-  };
+  const onPlay = () => {};
 
   const onEnded = () => {
     onSetPlaying(false);
@@ -65,7 +65,7 @@ const PlayerContainer = ({
     }
     for (let i = 0; i < lyric.length; i++) {
       if (
-        i < lyric.length - 1 &&
+        i < len - 1 &&
         i % 2 == 0 &&
         audioRef.current.currentTime >= lyric[i].start &&
         audioRef.current.currentTime <= lyric[i + 1].end
@@ -187,16 +187,19 @@ PlayerContainer.propTypes = {
   playerState: PropTypes.object.isRequired,
   onSetPlaying: PropTypes.func.isRequired,
   onUpdateLyric: PropTypes.func.isRequired,
-  onUpdateLyricPercent: PropTypes.func.isRequired
+  onUpdateLyricPercent: PropTypes.func.isRequired,
+  onAddSongToQueue: PropTypes.func.isRequired,
+  tracks: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => {
-  const { songState, routing, uiState, playerState } = state;
+  const { songState, routing, uiState, playerState, tracksState } = state;
   return {
     songData: songState.data,
     isFetching: songState.isFetching,
     isPlaying: uiState.isPlaying,
     routing,
+    tracks: tracksState.tracks,
     playerState
   };
 };
@@ -206,7 +209,9 @@ const mapDispatchToProps = dispatch => {
     onSetPlaying: isPlaying => dispatch(actionCreator.setPlaying(isPlaying)),
     onUpdateLyric: (lyric1, lyric2) =>
       dispatch(actionCreator.updateLyric(lyric1, lyric2)),
-    onUpdateLyricPercent: () => dispatch(actionCreator.updateLyricsPercent())
+    onUpdateLyricPercent: () => dispatch(actionCreator.updateLyricsPercent()),
+    onAddSongToQueue: (songData, tracks) =>
+      dispatch(actionCreator.addSongToQueue(songData, tracks))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerContainer);

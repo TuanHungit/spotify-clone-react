@@ -22,12 +22,14 @@ export function fetchTracks(page, id = 'ZWZB96AB', isLoadMore = false) {
         `${ENDPOINT.MEDIA_ENDPOINT}/top-100/${id}${page ? `?page=${page}` : ''}`
       )
       .then(({ data }) => {
+        const tracks = data.data.items;
         dispatch({
           type: TYPES.FETCH_TRACKS_SUCCESS,
-          tracks: data.data.items,
+          tracks,
           page,
           id
         });
+
         dispatch(stopFading());
       })
       .catch(() => {

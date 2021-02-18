@@ -16,16 +16,18 @@ export const Bounce4 = styled.div``;
 
 export const Container = styled.div`
   margin: 30px auto 30px;
-
   width: 70px;
   text-align: center;
   display: flex;
 
   justify-content: space-between;
+  ${({ center }) => (center ? `position: relative;top: 40%;` : ``)}
+
+  z-index: 10;
   & > div {
     width: 12px;
     height: 12px;
-    background-color: #b3b3b3;
+    background-color: ${({ color }) => (color ? color : `#b3b3b3`)};
     border-radius: 100%;
     display: inline-block;
     -webkit-animation: ${bouncedelay} 1.4s infinite ease-in-out both;

@@ -25,11 +25,14 @@ export const Group = styled.div`
   width: ${({ size }) => (size ? size : '20%')};
   justify-content: ${({ justifyContent }) =>
     justifyContent ? justifyContent : 'space-between'};
+  ${({ direction }) =>
+    direction ? `align-items: flex-start; margin-left: 10px;` : ''}
 `;
 export const Title = styled.h5`
   color: white;
   font-weight: bold;
-  margin-left: 10px;
+  padding: 0;
+  text-align: start;
 `;
 export const Image = styled.img`
   width: 60px;

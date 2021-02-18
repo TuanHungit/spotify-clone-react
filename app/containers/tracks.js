@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import * as actionCreator from '../actions';
 
 import { Tracks, LazyLoad, Loader, LinksByComma, Player } from '../components';
-import InfiniteScroll from '../HOC/infiniteScroll';
 import { PageInfo } from '../components';
 import * as SVG from '../svgs';
 import { changeAlias } from './../utils/func';
@@ -12,17 +11,30 @@ import { formatTime } from '../utils/func';
 import dataCategories from '../components/category/categoryData';
 
 const TracksContainer = props => {
-  const { tracks, isLoading, isLoadMore, songData, isPlaying } = props;
+  const {
+    tracks,
+    isLoading,
+    isLoadMore,
+    songData,
+    isPlaying,
+    onFetchSong,
+    onFetchTracks
+  } = props;
 
   const { id, name, img, desc } = props.location.state
     ? props.location.state
     : dataCategories.find(el => el.slug === props.match.params.slug);
 
   useEffect(() => {
-    props.onFetchTracks(1, id);
+    onFetchTracks(1, id);
     return () => props.onClearTracks();
   }, []);
 
+  useEffect(() => {
+    if (tracks.length !== 0 && songData === null) {
+      onFetchSong(tracks[0].id, changeAlias(tracks[0].name));
+    }
+  }, [tracks]);
   return (
     <React.Fragment>
       {!isLoading ? (

@@ -23,7 +23,7 @@ export const Content = styled.div`
 export const Title = styled.h1`
   font-weight: bolder;
   font-size: ${({ size }) => (size ? size : '96px')};
-
+  text-align: start;
   ${({ uppercase }) => (uppercase ? `text-transform: uppercase;` : '')}
 `;
 export const SubTitle = styled.p`

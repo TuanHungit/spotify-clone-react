@@ -1,10 +1,10 @@
-import React, { useRef, useLayoutEffect, useState } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import _throttle from 'lodash.throttle';
 
 import { fetchTracks } from '../actions';
-import { Main, Loader } from '../components';
+import { Main } from '../components';
 import routes from '../routes';
 
 const NUMBER_OF_PAGES = 5;
