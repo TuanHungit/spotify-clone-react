@@ -9,7 +9,7 @@ export const PlayIcon = styled.span`
   background: #1db954;
   opacity: 0;
   position: relative;
-  left: 5.8rem;
+  left: 2.8rem;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
   margin: 0;
   transition: all 0.2s ease-in;
@@ -18,7 +18,7 @@ export const PlayIcon = styled.span`
 export const Container = styled(ReactRouterLink)`
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: center;
   background: rgb(24, 24, 24);
   margin-right: 10px;
   border-radius: 5px;

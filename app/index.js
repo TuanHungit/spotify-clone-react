@@ -9,6 +9,7 @@ import './styles/input-range/input-range.scss';
 import './styles/base.scss';
 import { Provider } from 'react-redux';
 import history from './history';
+import ScrollToTop from './HOC/ScrollToTop';
 
 render(
   <React.Fragment>

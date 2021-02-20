@@ -22,8 +22,10 @@ const PlayerContainer = ({
   routing,
   playerState,
   onUpdateLyric,
+  onFetchSong,
   onUpdateLyricPercent,
   tracks,
+  queue,
   ...props
 }) => {
   const audioRef = useRef();
@@ -39,7 +41,9 @@ const PlayerContainer = ({
     initAnalyzer(audioRef.current);
   };
 
-  const onPlay = () => {};
+  const onPlay = () => {
+    onSetPlaying(true);
+  };
 
   const onEnded = () => {
     onSetPlaying(false);
@@ -58,7 +62,7 @@ const PlayerContainer = ({
     const { lyric1, lyric2 } = playerState;
     const len = lyric.length;
     if (
-      audioRef.current.currentTime > lyric[lyric.length - 1].end ||
+      (len > 0 && audioRef.current.currentTime > lyric[lyric.length - 1].end) ||
       audioRef.current.currentTime
     ) {
       onUpdateLyric([], []);
@@ -75,17 +79,35 @@ const PlayerContainer = ({
     }
     setCurrentTime(audioRef.current.currentTime);
   };
+
   const onHandleChange = value => {
     setCurrentTime(value);
   };
+
   const onHandleChangeComplete = value => {
     if (value == duration) {
       onUpdateLyric([], []);
     }
-    audioRef.current.play();
-    console.log(value);
-
     audioRef.current.currentTime = value;
+    audioRef.current.play();
+  };
+
+  const findSong = prevOrnext => {
+    let index;
+    switch (prevOrnext) {
+      case 'next':
+        index = 0;
+    }
+    return queue[index];
+  };
+  const onPlayPrevOrNextSong = prevOrnext => {
+    const { name, alias, id } = findSong(prevOrnext);
+    if (alias) {
+      onFetchSong(id, alias);
+    } else {
+      onFetchSong(id, changeAlias(name));
+    }
+    onAddSongToQueue(songData, tracks);
   };
   return (
     <Player>
@@ -125,7 +147,12 @@ const PlayerContainer = ({
             <Player.Icon src={SVG.shuffleStracks} opacity={0.5} />
           </Player.WrapperIcon>
           <Player.WrapperIcon>
-            <Player.Icon src={SVG.prevStacks} opacity={0.5} size="20px" />
+            <Player.Icon
+              src={SVG.prevStacks}
+              opacity={0.5}
+              size="20px"
+              onClick={() => onPlayPrevOrNextSong('prev')}
+            />
           </Player.WrapperIcon>
           <Player.WrapperIcon background="white">
             <Player.Icon
@@ -140,6 +167,7 @@ const PlayerContainer = ({
               rotate={'180deg'}
               size="20px"
               opacity={0.5}
+              onClick={() => onPlayPrevOrNextSong('next')}
             />
           </Player.WrapperIcon>
           <Player.WrapperIcon>
@@ -189,17 +217,26 @@ PlayerContainer.propTypes = {
   onUpdateLyric: PropTypes.func.isRequired,
   onUpdateLyricPercent: PropTypes.func.isRequired,
   onAddSongToQueue: PropTypes.func.isRequired,
-  tracks: PropTypes.array.isRequired
+  tracks: PropTypes.array.isRequired,
+  queue: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => {
-  const { songState, routing, uiState, playerState, tracksState } = state;
+  const {
+    songState,
+    routing,
+    uiState,
+    playerState,
+    tracksState,
+    queueState
+  } = state;
   return {
     songData: songState.data,
     isFetching: songState.isFetching,
     isPlaying: uiState.isPlaying,
     routing,
     tracks: tracksState.tracks,
+    queue: queueState.queue,
     playerState
   };
 };

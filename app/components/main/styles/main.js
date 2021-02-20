@@ -1,16 +1,19 @@
 import styled from 'styled-components/macro';
 
 export const UpperNav = styled.div`
-  background: rgba(9, 9, 9, 0.78);
-  height: 45px;
-  width: 100%;
+  background-color: ${({ color }) =>
+    color ? 'transparent' : `rgba(9, 9, 9, 0.78)`};
+  ${({ scroll, color }) =>
+    scroll && color ? `background-color: ${color};` : ''}
+  height: 65px;
+  width: 85%;
   display: flex;
   align-items: center;
   color: white;
-  padding: 0.6rem 2rem;
   position: fixed;
   top: 0;
   z-index: 2;
+  transition: background-color 0.5s ease;
 `;
 export const Content = styled.div``;
 export const Container = styled.div`
@@ -18,7 +21,7 @@ export const Container = styled.div`
 
   overflow-y: scroll;
   position: relative;
-  padding-top: 4rem;
+
   ${Content} {
     color: white;
   }

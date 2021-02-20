@@ -8,7 +8,9 @@ import * as SVG from '../svgs';
 
 const Queue = props => {
   const { songData, isPlaying, queue } = props;
-
+  useEffect(() => {
+    document.getElementById('content').scrollTo(0, 0);
+  }, []);
   return (
     <PageInfo bg={false}>
       <PageInfo.Content>

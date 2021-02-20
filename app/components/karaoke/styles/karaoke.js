@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 
 export const Text = styled.div`
   color: white;
-  font-weight: bold;
+  font-family: Spotify-Bold;
   font-size: 72px;
   display: block;
   width: 100%;
@@ -17,6 +17,7 @@ export const Text = styled.div`
 export const Container = styled.div`
   width: 100%;
   height: calc(100vh - 154px);
+  padding-top: 4rem;
   background-color: rgb(189, 71, 91);
   display: flex;
   flex-direction: column;

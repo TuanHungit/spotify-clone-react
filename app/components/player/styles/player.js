@@ -77,6 +77,7 @@ export const WrapperIcon = styled(ReactRouterLink)`
   align-items: center;
   margin: 0 7px 5px 7px;
   justify-content: center;
+  cursor: pointer;
   ${({ background }) =>
     background
       ? ` height: 35px; background: ${background}; 

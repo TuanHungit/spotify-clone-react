@@ -12,3 +12,9 @@ export const setPlaying = isPlaying => {
 export const setShowAnalyzer = isShowing => {
   return { type: TYPES.SET_SHOW_ANALYZER, isShowing };
 };
+export const setColor = color => {
+  return { type: TYPES.SET_COLOR, color };
+};
+export const clearColor = () => {
+  return { type: TYPES.CLEAR_COLOR };
+};

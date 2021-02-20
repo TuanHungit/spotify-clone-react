@@ -9,7 +9,7 @@ export const GlobalStyles = createGlobalStyle`
     
     html, body {
          margin: 0;
-         font-family:Spotify,sans-serif ;
+         font-family:Spotify,Spotify-Bold,sans-serif ;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         

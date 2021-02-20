@@ -21,7 +21,13 @@ export const Container = styled.div`
   display: flex;
 
   justify-content: space-between;
-  ${({ center }) => (center ? `position: relative;top: 40%;` : ``)}
+  ${({ center }) =>
+    center
+      ? `position: absolute;
+      top: 45%; 
+      left: 50%;  
+      transform: translate(-50%, -50%);`
+      : ``}
 
   z-index: 10;
   & > div {

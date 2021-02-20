@@ -37,3 +37,12 @@ export function formatTime(s) {
   const second = Math.floor(s) % 60;
   return `${min}:${insertZero(second)}`;
 }
+
+export function getRandomColor() {
+  let letters = 'BCDEF'.split('');
+  let color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * letters.length)];
+  }
+  return color;
+}

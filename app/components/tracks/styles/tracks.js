@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { Link as ReactRouterLink } from 'react-router-dom';
+import { LinksByComma } from '../';
 
 export const Container = styled.div`
   display: flex;
@@ -100,7 +101,7 @@ export const Item = styled.li`
     ${Order} {
       display: none;
     }
-    ${SubTitle} {
+    ${SubTitle},  ${LinksByComma}{
       color: white;
     }
   }`

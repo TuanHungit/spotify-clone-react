@@ -2,6 +2,7 @@ import styled from 'styled-components/macro';
 
 export const Image = styled.img`
   display: block;
+  object-fit: cover;
   height: ${({ size }) => size}px;
   width: ${({ size }) => size}px;
   @keyframes loaded {

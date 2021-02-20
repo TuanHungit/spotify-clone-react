@@ -2,17 +2,11 @@ import styled from 'styled-components/macro';
 import { Link as ReachRouterLink } from 'react-router-dom';
 
 export const Container = styled.div`
+  width: 100%;
   display: flex;
-  margin: 0 56px;
-  height: 100px;
   justify-content: space-between;
   align-items: center;
-  a {
-    display: flex;
-  }
-  @media (max-width: 1000px) {
-    margin: 0 30px;
-  }
+  padding: 0 32px;
 `;
 
 export const Group = styled.div`
@@ -20,66 +14,51 @@ export const Group = styled.div`
   align-items: center;
 `;
 
-export const SearchInput = styled.input`
-  background-color: rgba(64, 64, 64, 0.5);
+export const ButtonLink = styled(ReachRouterLink)`
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 12px;
   color: white;
-  border: 1px solid white;
-  transition: width 0.5s;
-  height: 30px;
-  font-size: 14px;
-  border-radius: 4px;
-  margin-left: ${({ active }) => (active === true ? '10px' : '0')};
-  padding: ${({ active }) => (active === true ? '0 10px' : '0')};
-  opacity: ${({ active }) => (active === true ? '1' : '0')};
-  width: ${({ active }) => (active === true ? '200px' : '0px')};
-  &:focus {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
-`;
-
-export const Search = styled.div`
-  display: flex;
-  align-items: center;
-  svg {
-    color: white;
-    cursor: pointer;
-  }
-  @media (max-width: 700px) {
-    display: none;
-  }
-`;
-
-export const SearchIcon = styled.button`
+  background-color: rgba(9, 9, 9, 0.78);
+  text-decoration: none;
+  padding: 10px 36px;
+  border: 1px solid hsla(0, 0%, 100%, 0.7);
+  line-height: 18px;
+  font-weight: 700;
+  letter-spacing: 1.76px;
   cursor: pointer;
-  background-color: transparent;
-  border: 0;
-  outline: 0;
-  height: 32px;
-  width: 32px;
-  padding: 0;
+  border-radius: 20px;
+  text-align: center;
+  margin-left: 20px;
+
+  transition: all 0.1s ease-in-out;
+  ${({ isLoginIcon }) =>
+    isLoginIcon ? `background-color: white; color: black;` : ''}
+
+  &: hover {
+    transform: scale(1.05);
+  }
+`;
+
+export const WrapperIcon = styled.div`
+  border-radius: 50%;
+  background-color: rgba(9, 9, 9, 0.78);
+  width: 35px;
+  height: 35px;
   display: flex;
+  cursor: pointer;
   align-items: center;
   justify-content: center;
-  img {
-    filter: brightness(0) invert(1);
-    width: 16px;
+  margin-left: 10px;
+  transition: all 0.1s ease-in-out;
+
+  &: hover {
+    transform: scale(1.05);
   }
 `;
-
-export const ButtonLink = styled(ReachRouterLink)`
-  display: block;
-  background-color: #e50914;
-  width: 84px;
-  height: fit-content;
-  color: white;
-  border: 0;
-  font-size: 15px;
-  border-radius: 3px;
-  padding: 8px 17px;
-  cursor: pointer;
-  align-items: center;
-  text-decoration: none;
-  &:hover {
-    background: #f40612;
-  }
+export const Icon = styled.img`
+  width: 30px;
+  height: 30px;
+  filter: brightness(0) invert(1);
+  ${({ rotate }) => (rotate ? 'transform: rotate(180deg); ' : ``)}
 `;

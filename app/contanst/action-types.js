@@ -10,6 +10,8 @@ export const START_FADING = 'START_FADING';
 export const STOP_FADING = 'STOP_FADING';
 export const SET_PLAYING = 'SET_PLAYING';
 export const SET_SHOW_ANALYZER = 'SET_SHOW_ANALYZER';
+export const SET_COLOR = 'SET_COLOR';
+export const CLEAR_COLOR = 'CLEAR_COLOR';
 
 //actions for song
 export const START_FETCH_SONG = 'START_FETCH_SONG';

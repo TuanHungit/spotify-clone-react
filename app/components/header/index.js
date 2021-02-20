@@ -3,10 +3,9 @@ import React, { useState } from 'react';
 import {
   Container,
   Group,
-  Search,
-  SearchIcon,
-  SearchInput,
-  ButtonLink
+  Icon,
+  ButtonLink,
+  WrapperIcon
 } from './styles/header';
 
 export default function Header({ children, ...restProps }) {
@@ -16,31 +15,22 @@ export default function Header({ children, ...restProps }) {
 Header.Group = function HeaderGroup({ children, ...restProps }) {
   return <Group {...restProps}>{children}</Group>;
 };
+Header.Icon = function HeaderIcon({ children, ...restProps }) {
+  return <Icon {...restProps}>{children}</Icon>;
+};
 
-Header.Search = function HeaderSearch({
-  searchTerm,
-  setSearchTerm,
+Header.ButtonLink = function HeaderButtonLink({
+  isLoginIcon = false,
+  children,
   ...restProps
 }) {
-  const [searchActive, setSearchActive] = useState(false);
-
   return (
-    <Search {...restProps}>
-      <SearchIcon
-        onClick={() => setSearchActive(searchActive => !searchActive)}
-        data-testid="search-click"
-      >
-        <img src="/images/icons/search.png" alt="Search" />
-      </SearchIcon>
-      <SearchInput
-        placeholder="Search for Artists, Songs, or Podcasts"
-        active={searchActive}
-        data-testid="search-input"
-      />
-    </Search>
+    <ButtonLink isLoginIcon={isLoginIcon} {...restProps}>
+      {children}
+    </ButtonLink>
   );
 };
 
-Header.ButtonLink = function HeaderButtonLink({ children, ...restProps }) {
-  return <ButtonLink {...restProps}>{children}</ButtonLink>;
+Header.WrapperIcon = function HeaderWrapperIcon({ children, ...restProps }) {
+  return <WrapperIcon {...restProps}>{children}</WrapperIcon>;
 };

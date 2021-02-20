@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actionCreator from '../actions';
@@ -6,8 +6,8 @@ import * as actionCreator from '../actions';
 import { Tracks, LazyLoad, Loader, LinksByComma, Player } from '../components';
 import { PageInfo } from '../components';
 import * as SVG from '../svgs';
-import { changeAlias } from './../utils/func';
-import { formatTime } from '../utils/func';
+import { changeAlias, formatTime, getRandomColor } from './../utils/func';
+
 import dataCategories from '../components/category/categoryData';
 
 const TracksContainer = props => {
@@ -18,19 +18,28 @@ const TracksContainer = props => {
     songData,
     isPlaying,
     onFetchSong,
-    onFetchTracks
+    onFetchTracks,
+    onClearTracks,
+    onSetColor,
+    onClearColor,
+    color
   } = props;
 
-  const { id, name, img, desc } = props.location.state
+  const { id, title, cover, desc } = props.location.state
     ? props.location.state
-    : dataCategories.find(el => el.slug === props.match.params.slug);
+    : dataCategories.find(el => el.alias === props.match.params.slug);
 
   useEffect(() => {
     onFetchTracks(1, id);
-    return () => props.onClearTracks();
+
+    return () => {
+      onClearTracks();
+      onClearColor();
+    };
   }, []);
 
   useEffect(() => {
+    onSetColor(getRandomColor());
     if (tracks.length !== 0 && songData === null) {
       onFetchSong(tracks[0].id, changeAlias(tracks[0].name));
     }
@@ -38,15 +47,15 @@ const TracksContainer = props => {
   return (
     <React.Fragment>
       {!isLoading ? (
-        <PageInfo>
+        <PageInfo color={color}>
           <PageInfo.Wrapper>
             <PageInfo.Group padding="30px">
-              <PageInfo.Image src={img} />
+              <PageInfo.Image src={cover} />
               <PageInfo.Content>
                 <PageInfo.Title uppercase size="12px">
                   Playplist
                 </PageInfo.Title>
-                <PageInfo.Title>{name}</PageInfo.Title>
+                <PageInfo.Title>{title}</PageInfo.Title>
                 <PageInfo.SubTitle>{desc}</PageInfo.SubTitle>
                 <PageInfo.Group>
                   <PageInfo.Text>Spotify</PageInfo.Text>
@@ -142,7 +151,7 @@ const TracksContainer = props => {
           </PageInfo.Wrapper>
         </PageInfo>
       ) : (
-        <Loader />
+        <Loader center />
       )}
     </React.Fragment>
   );
@@ -163,7 +172,8 @@ const mapStateToProps = state => {
     isFading: state.uiState.isFading,
     songData: state.songState.data,
     isPlaying: state.uiState.isPlaying,
-    isLoadMore: state.tracksState.isLoadMore
+    isLoadMore: state.tracksState.isLoadMore,
+    color: state.uiState.color
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -171,7 +181,9 @@ const mapDispatchToProps = dispatch => {
     onFetchTracks: (page, tracksId) =>
       dispatch(actionCreator.fetchTracks(page, tracksId)),
     onClearTracks: () => dispatch(actionCreator.clearTracks()),
-    onFetchSong: (id, name) => dispatch(actionCreator.fetchSong(id, name))
+    onClearColor: () => dispatch(actionCreator.clearColor()),
+    onFetchSong: (id, name) => dispatch(actionCreator.fetchSong(id, name)),
+    onSetColor: color => dispatch(actionCreator.setColor(color))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(TracksContainer);

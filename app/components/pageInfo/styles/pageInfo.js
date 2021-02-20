@@ -2,12 +2,14 @@ import styled from 'styled-components/macro';
 
 export const Container = styled.div`
   max-height: 85vh;
+  padding-top: 4rem;
   ${({ bg }) =>
     bg
       ? `
-      background-color: rgb(182, 250, 206);
+    
       background-image: linear-gradient(rgba(0, 0, 0, 0.1), #121212 95%);`
       : ''}
+  ${({ color, bg }) => (color && bg ? ` background-color: ${color};` : ``)}
 `;
 export const Image = styled.img`
   height: 232px;
@@ -19,17 +21,29 @@ export const Image = styled.img`
 export const Content = styled.div`
   text-align: left;
   padding: 0 2rem;
+  width: 100%;
 `;
 export const Title = styled.h1`
-  font-weight: bolder;
-  font-size: ${({ size }) => (size ? size : '96px')};
-  text-align: start;
+  font-family: Spotify-Bold;
+
+  font-size: ${({ size }) => (size ? size : '86px')};
+  display: block;
+  display: -webkit-box;
+  heigth: 80%;
+  margin: 0 auto;
+
+  line-height: 1;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
   ${({ uppercase }) => (uppercase ? `text-transform: uppercase;` : '')}
 `;
 export const SubTitle = styled.p`
   font-size: 0.9rem;
   opacity: 0.7;
   margin: 0.5rem 0;
+  font-weight: 600;
 `;
 export const Text = styled.p`
   display: flex;
@@ -43,6 +57,8 @@ export const Text = styled.p`
 export const Group = styled.div`
   display: flex;
   ${({ padding }) => (padding ? `padding: 50px;` : '')}
+  align-items: flex-end;
+  max-height: 232px;
 `;
 export const Wrapper = styled.div`
   width: 100%;
