@@ -20,6 +20,7 @@ export const Inner = styled.ul`
   flex-direction: column;
   justify-content: center;
   padding-top: 20px;
+  overflow-x: hidden;
 `;
 
 export const Icon = styled.img`

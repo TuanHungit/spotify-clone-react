@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "proxy": "http://localhost:5000",
   "scripts": {
     "start": "npm run build && npm run server",
     "dev:client": "npm run webpack:dev",
@@ -12,7 +13,8 @@
     "webpack:dev": "./node_modules/.bin/webpack-dev-server --content-base public --inline --hot --progress",
     "webpack:prod": "./node_modules/.bin/webpack --env=prod --progress --profile --colors",
     "build": "npm run clean && npm run webpack:prod",
-    "test": "ava --verbose"
+    "test": "ava --verbose",
+    "heroku-postbuild": "npm install --only=dev && npm install && npm run start"
   },
   "ava": {
     "files": [

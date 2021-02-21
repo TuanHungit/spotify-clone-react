@@ -20,7 +20,7 @@ export const Image = styled.img`
 `;
 export const Content = styled.div`
   text-align: left;
-  padding: 0 2rem;
+
   width: 100%;
 `;
 export const Title = styled.h1`

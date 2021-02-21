@@ -108,14 +108,18 @@ const PlayerContainer = ({
 
   const onHandleChange = value => {
     setCurrentTime(value);
-  };
-
-  const onHandleChangeComplete = value => {
+    audioRef.current.currentTime = value;
     if (value == duration) {
       onUpdateLyric([], []);
     }
-    audioRef.current.currentTime = value;
+  };
+
+  const onHandleChangeComplete = value => {
     audioRef.current.play();
+    if (audioRef.current.duration) {
+      audioRef.current.currentTime =
+        (value / duration) * audioRef.current.duration;
+    }
   };
 
   const onPlayPrevOrNextSong = prevOrnext => {
@@ -210,7 +214,6 @@ const PlayerContainer = ({
             minValue={0}
             value={parseInt(currentTime, 10)}
             onChange={onHandleChange}
-            onChangeComplete={onHandleChangeComplete}
           />
           <Player.TimeSeek>
             {duration ? formatTime(duration) : '0:00'}
@@ -223,6 +226,7 @@ const PlayerContainer = ({
         >
           <Player.Icon
             src={SVG.lyrics}
+            size="20px"
             isClicked={karaoke}
             onClick={() => {
               setKaraoke(state => {
@@ -246,6 +250,7 @@ const PlayerContainer = ({
         >
           <Player.Icon
             src={SVG.queueStracks}
+            size="20px"
             isClicked={queueSong}
             onClick={() => {
               setQueue(state => {
@@ -264,6 +269,13 @@ const PlayerContainer = ({
             }}
           />
         </Player.WrapperIcon>
+
+        <Player.Group size="40%">
+          <Player.WrapperIcon>
+            <i class="fas fa-volume-up" style={{ fontSize: '20px' }}></i>
+          </Player.WrapperIcon>
+          <InputRange maxValue={50} minValue={0} value={50} />
+        </Player.Group>
       </Player.Group>
     </Player>
   );

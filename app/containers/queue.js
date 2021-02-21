@@ -12,10 +12,17 @@ const Queue = props => {
     document.getElementById('content').scrollTo(0, 0);
   }, []);
   return (
-    <PageInfo bg={false}>
-      <PageInfo.Content>
-        <PageInfo.Title size="24px">Queue</PageInfo.Title>
-        <PageInfo.Text>Now Playing</PageInfo.Text>
+    <PageInfo
+      bg={false}
+      style={{
+        padding: '5rem 2rem 0'
+      }}
+    >
+      <PageInfo.Title size="24px" style={{ marginBottom: '20px' }}>
+        Queue
+      </PageInfo.Title>
+      <PageInfo.Text>Now Playing</PageInfo.Text>
+      <Tracks.Inner style={{ width: '100%' }}>
         {songData ? (
           <Tracks.Item hover isPlaying={isPlaying} isPlayer={true}>
             <Tracks.Group size={'80px'}>
@@ -52,7 +59,9 @@ const Queue = props => {
             </Tracks.Group>
           </Tracks.Item>
         ) : null}
-        <PageInfo.Text>Next from: Bùi Anh Tuấn</PageInfo.Text>
+        <PageInfo.Text style={{ paddingBottom: '20px 0' }}>
+          Next from:
+        </PageInfo.Text>
         {queue
           ? queue.map((el, key) => (
               <Tracks.Item
@@ -95,7 +104,7 @@ const Queue = props => {
               </Tracks.Item>
             ))
           : null}
-      </PageInfo.Content>
+      </Tracks.Inner>
     </PageInfo>
   );
 };
