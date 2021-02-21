@@ -14,7 +14,7 @@
     "webpack:prod": "./node_modules/.bin/webpack --env=prod --progress --profile --colors",
     "build": "npm run webpack:prod",
     "test": "ava --verbose",
-    "heroku-prebuild": "npm install --dev"
+    "heroku-prebuild": "rm -rf package-lock.json && npm install --dev"
   },
   "ava": {
     "files": [
