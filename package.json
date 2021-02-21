@@ -65,6 +65,7 @@
     "axios": "^0.16.2",
     "babel-loader": "^7.0.0",
     "bcrypt-nodejs": "0.0.3",
+    "globby": "^6.1.0",
     "body-parser": "^1.17.1",
     "cheerio": "^0.22.0",
     "co": "^4.6.0",
