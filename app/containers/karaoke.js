@@ -4,13 +4,7 @@ import { connect } from 'react-redux';
 import { Karaoke, Loader } from '../components';
 import * as actionCreator from '../actions';
 
-const KaraokeContainer = ({
-  lyric,
-  isFetching,
-  isAnalyzerShowing,
-  playerState,
-  onSetShowAnalyzer
-}) => {
+const KaraokeContainer = ({ color, playerState, onSetShowAnalyzer }) => {
   const { per1, per2, lyric1, lyric2 } = playerState;
 
   useEffect(() => {
@@ -19,10 +13,14 @@ const KaraokeContainer = ({
   }, []);
   console.log(lyric1, lyric2);
   return (
-    <Karaoke>
+    <Karaoke color={color}>
       {lyric1.length === 0 && <Loader color="white" center />}
-      <Karaoke.Text active={lyric1.length !== 0}>{lyric1.text}</Karaoke.Text>
-      <Karaoke.Text active={lyric2.length !== 0}> {lyric2.text}</Karaoke.Text>
+      {lyric1.length != 0 && (
+        <Karaoke.Text active={lyric1.length !== 0}>{lyric1.text}</Karaoke.Text>
+      )}
+      {lyric2.length != 0 && (
+        <Karaoke.Text active={lyric2.length !== 0}> {lyric2.text}</Karaoke.Text>
+      )}
     </Karaoke>
   );
 };
@@ -33,7 +31,8 @@ const mapStateToProps = state => {
     playerState,
     isAnalyzerShowing: uiState.isAnalyzerShowing,
     lyric: songState.data ? songState.data.lyric : null,
-    isFetching: songState.isFetching
+    isFetching: songState.isFetching,
+    color: uiState.color
   };
 };
 const mapDispatchToProps = dispatch => {

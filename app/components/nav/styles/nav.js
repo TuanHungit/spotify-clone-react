@@ -5,6 +5,7 @@ export const Container = styled.div`
   width: 15%;
   height: 100%;
   background: #040404;
+  z-index: 3;
   @media (max-width: 1000px) {
     display: none;
   }

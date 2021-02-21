@@ -5,7 +5,7 @@ import { startFading, stopFading } from './ui';
 
 let cachedId = 'ZWZB96AB';
 
-export function fetchTracks(page, id = 'ZWZB96AB', isLoadMore = false) {
+export function fetchTracks(page, id = 'ZWZB96AB', alias, isLoadMore = false) {
   return dispatch => {
     if (isLoadMore) {
       dispatch({ type: TYPES.START_FETCHING_MORE_TRACKS });
@@ -16,7 +16,7 @@ export function fetchTracks(page, id = 'ZWZB96AB', isLoadMore = false) {
       dispatch(startFading());
       cachedId = id;
     }
-
+    console.log(alias);
     axios
       .get(
         `${ENDPOINT.MEDIA_ENDPOINT}/top-100/${id}${page ? `?page=${page}` : ''}`
@@ -27,7 +27,8 @@ export function fetchTracks(page, id = 'ZWZB96AB', isLoadMore = false) {
           type: TYPES.FETCH_TRACKS_SUCCESS,
           tracks,
           page,
-          id
+          id,
+          alias
         });
 
         dispatch(stopFading());

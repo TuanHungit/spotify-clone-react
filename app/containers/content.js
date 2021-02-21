@@ -30,7 +30,7 @@ const Content = props => {
       if (el.scrollTop + el.clientHeight >= el.scrollHeight - 200) {
         if (props.pageLoaded < NUMBER_OF_PAGES && !props.isLoadMore) {
           const page = props.pageLoaded + 1;
-          props.fetchTracks(page, props.activeId, true);
+          props.fetchTracks(page, props.activeId, props.alias, true);
         }
       }
     }, 100)();
@@ -77,6 +77,7 @@ const mapStateToProps = state => {
     isLoadMore: state.tracksState.isLoadMore,
     isLoading: state.tracksState.isLoading,
     activeId: state.tracksState.activeId,
+    alias: state.tracksState.url,
     color: state.uiState.color
   };
 };

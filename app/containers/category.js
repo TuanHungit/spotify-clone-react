@@ -1,9 +1,11 @@
 import React from 'react';
-import { Category, Card, LazyLoad } from '../components';
-import play from '../svgs/play.svg';
-import dataCategories from '../components/category/categoryData';
+import { connect } from 'react-redux';
 
-const Categories = () => {
+import { Category, Card, LazyLoad } from '../components';
+import dataCategories from '../components/category/categoryData';
+import * as SVG from '../svgs';
+
+const Categories = ({ isPlaying, url, onSetPlaying }) => {
   return (
     <Category>
       <Category.Item>
@@ -15,7 +17,11 @@ const Categories = () => {
               to={{ pathname: `/tracks/${el.alias}`, state: { ...el } }}
             >
               <LazyLoad src={el.cover} alt="Thumbnail" size={'140'} />
-              <Card.PlayIcon src={play} />
+              <Card.PlayIcon
+                src={isPlaying && url === el.alias ? SVG.pause : SVG.play}
+                isPlaying={isPlaying && url === el.alias}
+                onClick={() => onSetPlaying(!isPlaying)}
+              />
               <Card.Content>
                 <Card.Title>{el.title}</Card.Title>
                 <Card.SubTitle>{el.desc}</Card.SubTitle>
@@ -28,4 +34,16 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+const mapStateToProps = state => {
+  return {
+    isPlaying: state.uiState.isPlaying,
+    url: state.tracksState.url
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onSetPlaying: isPlaying => dispatch(actionCreator.setPlaying(isPlaying))
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);

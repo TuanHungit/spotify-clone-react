@@ -13,7 +13,7 @@ export const Container = styled.div`
   justify-content: center;
   width: 100%;
   color: white;
-  z-index: 2;
+  z-index: 4;
   position: relative;
   overflow: hidden;
 `;
@@ -53,8 +53,8 @@ export const Icon = styled.img`
   width: ${({ size }) => (size ? size : '30px')};
   padding-left: ${({ isPlaying }) => (isPlaying ? `0.5px` : '3px')};
   filter: brightness(0) invert(${({ opacity }) => (opacity ? opacity : 1)});
-  ${({ opacity }) =>
-    opacity
+  ${({ opacity, isClicked }) =>
+    opacity && !isClicked
       ? `
     &:hover{
       filter: brightness(0) invert(1);
@@ -62,11 +62,18 @@ export const Icon = styled.img`
   `
       : ''}
   ${({ rotate }) => (rotate ? ` transform: rotate(${rotate});` : '')}
+
+  ${({ isClicked }) =>
+    isClicked
+      ? `
+    filter: invert(72%) sepia(47%) saturate(4909%) hue-rotate(93deg) brightness(92%) contrast(77%);
+    `
+      : ''}
 `;
 export const TimeSeek = styled.span`
-  font-size: 13px;
+  font-size: 12px;
   color: #b3b3b3;
-  font-weight: 500;
+  font-weight: bold;
   width: 100%;
   max-width: 30px;
 `;

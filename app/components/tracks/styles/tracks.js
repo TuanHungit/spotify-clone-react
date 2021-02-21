@@ -135,6 +135,23 @@ export const Item = styled.li`
         }
   }`
       : ``}
+      
+    ${({ isClicked }) =>
+    isClicked
+      ? `
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    ${Icon} {
+      display: block;
+    }
+    ${Order} {
+      display: none;
+    }
+    ${SubTitle},  ${LinksByComma}{
+      color: white;
+    }
+    `
+      : ``}
 `;
 
 export const Actions = styled.div`

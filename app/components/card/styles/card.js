@@ -14,6 +14,20 @@ export const PlayIcon = styled.span`
   margin: 0;
   transition: all 0.2s ease-in;
   top: -3rem;
+
+  ${({ isPlaying }) =>
+    isPlaying
+      ? `opacity: 1;
+      top: -4rem;
+      ${Icon}{
+          filter: brightness(0) invert(1);
+           margin-left: 5px;
+      }`
+      : ''}
+
+  &:focus {
+    transform: scale(1.02);
+  }
 `;
 export const Container = styled(ReactRouterLink)`
   display: flex;
@@ -50,6 +64,7 @@ export const SubTitle = styled.p`
   margin-top: 0.5rem;
   width: 140px;
   white-space: nowrap;
+  font-weight: bold;
   color: #b3b3b3;
   font-size: 15px;
   overflow: hidden;

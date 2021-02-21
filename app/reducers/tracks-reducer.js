@@ -5,7 +5,8 @@ const initialState = {
   tracks: [],
   pageLoaded: 1,
   isLoading: false,
-  isLoadMore: false
+  isLoadMore: false,
+  url: ''
 };
 
 function compareTwoFirstTrack(track1, track2) {
@@ -31,6 +32,7 @@ function fetchTrackSuccess(state, action) {
     ...state,
     tracks,
     pageLoaded,
+    url: action.alias,
     activeId: action.id,
     isLoading: false,
     isLoadMore: false

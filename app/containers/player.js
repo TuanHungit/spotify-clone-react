@@ -1,14 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 import InputRange from 'react-input-range';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {
-  clearRequestInterval,
-  requestInterval
-} from '../utils/requestInterval';
 import { Player, LinksByComma } from '../components';
-import { initAnalyzer, resetAnalyzer } from '../utils/initAnalyzer';
+import { initAnalyzer } from '../utils/initAnalyzer';
 import * as actionCreator from '../actions';
 import * as SVG from '../svgs';
 import { formatTime, changeAlias } from '../utils/func';
@@ -22,6 +19,7 @@ const PlayerContainer = ({
   routing,
   playerState,
   onUpdateLyric,
+  url,
   onFetchSong,
   onUpdateLyricPercent,
   tracks,
@@ -29,8 +27,13 @@ const PlayerContainer = ({
   ...props
 }) => {
   const audioRef = useRef();
+  const history = useHistory();
   const [duration, setDuration] = useState(0);
   const [loop, setLoop] = useState(false);
+  const [shuffle, setShuffle] = useState(false);
+  const [karaoke, setKaraoke] = useState(false);
+  const [queueSong, setQueue] = useState(false);
+
   const [currentTime, setCurrentTime] = useState(0);
 
   const onLoadedData = () => {
@@ -40,7 +43,15 @@ const PlayerContainer = ({
     onAddSongToQueue(songData, tracks);
     initAnalyzer(audioRef.current);
   };
-
+  useEffect(() => {
+    if (audioRef.current) {
+      if (!isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+    }
+  }, [isPlaying]);
   const onPlay = () => {
     onSetPlaying(true);
   };
@@ -67,10 +78,8 @@ const PlayerContainer = ({
     ) {
       onUpdateLyric([], []);
     }
-    for (let i = 0; i < lyric.length; i++) {
+    for (let i = 0; i < lyric.length; i = i + 2) {
       if (
-        i < len - 1 &&
-        i % 2 == 0 &&
         audioRef.current.currentTime >= lyric[i].start &&
         audioRef.current.currentTime <= lyric[i + 1].end
       ) {
@@ -144,7 +153,12 @@ const PlayerContainer = ({
       <Player.Group size="40%" direction="column" justifyContent="center">
         <Player.Group size="100%" justifyContent="center">
           <Player.WrapperIcon>
-            <Player.Icon src={SVG.shuffleStracks} opacity={0.5} />
+            <Player.Icon
+              src={SVG.shuffleStracks}
+              opacity={0.5}
+              isClicked={shuffle}
+              onClick={() => setShuffle(state => !state)}
+            />
           </Player.WrapperIcon>
           <Player.WrapperIcon>
             <Player.Icon
@@ -171,7 +185,12 @@ const PlayerContainer = ({
             />
           </Player.WrapperIcon>
           <Player.WrapperIcon>
-            <Player.Icon src={SVG.repeatStracks} opacity={0.5} />
+            <Player.Icon
+              src={SVG.repeatStracks}
+              opacity={0.5}
+              isClicked={loop}
+              onClick={() => setLoop(state => !state)}
+            />
           </Player.WrapperIcon>
         </Player.Group>
         <Player.Group size="100%" justifyContent="center">
@@ -194,12 +213,48 @@ const PlayerContainer = ({
         <Player.WrapperIcon
           to={songData ? `/tracks/${changeAlias(songData.name)}/karaoke` : '#'}
         >
-          <Player.Icon src={SVG.lyrics} />
+          <Player.Icon
+            src={SVG.lyrics}
+            isClicked={karaoke}
+            onClick={() => {
+              setKaraoke(state => {
+                const isClicked = state;
+                setQueue(state => {
+                  if (!state) {
+                    return;
+                  }
+                  return isClicked;
+                });
+                if (isClicked) {
+                  history.push(`/tracks/${url}`);
+                }
+                return !state && songData;
+              });
+            }}
+          />
         </Player.WrapperIcon>
         <Player.WrapperIcon
           to={songData ? `/tracks/${changeAlias(songData.name)}/queue` : '#'}
         >
-          <Player.Icon src={SVG.queueStracks} />
+          <Player.Icon
+            src={SVG.queueStracks}
+            isClicked={queueSong}
+            onClick={() => {
+              setQueue(state => {
+                const isClicked = state;
+                setKaraoke(state => {
+                  if (!state) {
+                    return;
+                  }
+                  return isClicked;
+                });
+                if (isClicked) {
+                  history.push(`/tracks/${url}`);
+                }
+                return !state && songData;
+              });
+            }}
+          />
         </Player.WrapperIcon>
       </Player.Group>
     </Player>
@@ -236,6 +291,7 @@ const mapStateToProps = state => {
     isPlaying: uiState.isPlaying,
     routing,
     tracks: tracksState.tracks,
+    url: tracksState.url,
     queue: queueState.queue,
     playerState
   };

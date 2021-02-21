@@ -22,18 +22,20 @@ const TracksContainer = props => {
     onClearTracks,
     onSetColor,
     onClearColor,
+    onSetPlaying,
     color
   } = props;
 
-  const { id, title, cover, desc } = props.location.state
+  const [clicked, setClicked] = useState(0);
+  const { id, title, alias, cover, desc } = props.location.state
     ? props.location.state
     : dataCategories.find(el => el.alias === props.match.params.slug);
 
   useEffect(() => {
-    onFetchTracks(1, id);
+    onFetchTracks(1, id, alias);
 
     return () => {
-      onClearTracks();
+      // onClearTracks();
       onClearColor();
     };
   }, []);
@@ -70,6 +72,7 @@ const TracksContainer = props => {
                 size="50px"
                 src={isPlaying ? SVG.pause : SVG.play}
                 background={'#1db954'}
+                onClick={() => onSetPlaying(!isPlaying)}
               />
               <PageInfo.PlayIcon src={SVG.heart} />
               <PageInfo.PlayIcon src={SVG.note} />
@@ -98,9 +101,11 @@ const TracksContainer = props => {
                   <Tracks.Item
                     hover
                     key={key}
-                    onClick={() =>
-                      props.onFetchSong(el.id, changeAlias(el.name))
-                    }
+                    onClick={() => {
+                      props.onFetchSong(el.id, changeAlias(el.name));
+                      setClicked(el.id);
+                    }}
+                    isClicked={el.id === clicked}
                     isPlaying={songData && songData.id === el.id && isPlaying}
                     isPlayer={songData && songData.id === el.id}
                   >
@@ -178,12 +183,13 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchTracks: (page, tracksId) =>
-      dispatch(actionCreator.fetchTracks(page, tracksId)),
+    onFetchTracks: (page, tracksId, alias) =>
+      dispatch(actionCreator.fetchTracks(page, tracksId, alias)),
     onClearTracks: () => dispatch(actionCreator.clearTracks()),
     onClearColor: () => dispatch(actionCreator.clearColor()),
     onFetchSong: (id, name) => dispatch(actionCreator.fetchSong(id, name)),
-    onSetColor: color => dispatch(actionCreator.setColor(color))
+    onSetColor: color => dispatch(actionCreator.setColor(color)),
+    onSetPlaying: isPlaying => dispatch(actionCreator.setPlaying(isPlaying))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(TracksContainer);
