@@ -5,7 +5,7 @@
   "license": "MIT",
   "proxy": "http://localhost:5000",
   "scripts": {
-    "start": "npm run build && npm run server",
+    "start": " npm run server",
     "dev:client": "npm run webpack:dev",
     "dev:server": "cross-env DEBUG=server:* nodemon ./server",
     "server": "cross-env NODE_ENV=production node server",
