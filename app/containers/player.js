@@ -24,6 +24,7 @@ const PlayerContainer = ({
   onUpdateLyricPercent,
   tracks,
   queue,
+  fetchSongError,
   ...props
 }) => {
   const audioRef = useRef();
@@ -33,16 +34,9 @@ const PlayerContainer = ({
   const [shuffle, setShuffle] = useState(false);
   const [karaoke, setKaraoke] = useState(false);
   const [queueSong, setQueue] = useState(false);
-
+  const [index, setIndex] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
-  const onLoadedData = () => {
-    setDuration(audioRef.current.duration);
-    audioRef.current.play();
-    onSetPlaying(true);
-    onAddSongToQueue(songData, tracks);
-    initAnalyzer(audioRef.current);
-  };
   useEffect(() => {
     if (audioRef.current) {
       if (!isPlaying) {
@@ -52,14 +46,37 @@ const PlayerContainer = ({
       }
     }
   }, [isPlaying]);
+
+  useEffect(() => {
+    if (fetchSongError) {
+      onPlayPrevOrNextSong();
+    }
+  }, [fetchSongError]);
+
+  useEffect(() => {
+    if (!isFetching) {
+      setIndex(0);
+    }
+  }, [isFetching]);
+
   const onPlay = () => {
     onSetPlaying(true);
+  };
+
+  const onLoadedData = () => {
+    setDuration(audioRef.current.duration);
+    audioRef.current.play();
+    onSetPlaying(true);
+    onAddSongToQueue(songData, tracks);
+    initAnalyzer(audioRef.current);
   };
 
   const onEnded = () => {
     onSetPlaying(false);
     setCurrentTime(0);
+    onPlayPrevOrNextSong();
   };
+
   const handlePausePlayClick = () => {
     if (isPlaying) {
       audioRef.current.pause();
@@ -101,22 +118,13 @@ const PlayerContainer = ({
     audioRef.current.play();
   };
 
-  const findSong = prevOrnext => {
-    let index;
-    switch (prevOrnext) {
-      case 'next':
-        index = 0;
-    }
-    return queue[index];
-  };
   const onPlayPrevOrNextSong = prevOrnext => {
-    const { name, alias, id } = findSong(prevOrnext);
-    if (alias) {
-      onFetchSong(id, alias);
-    } else {
-      onFetchSong(id, changeAlias(name));
+    if (queue.length > 0) {
+      const { name, alias, id } = queue[index];
+      onFetchSong(id, alias ? alias : changeAlias(name));
     }
     onAddSongToQueue(songData, tracks);
+    setIndex(state => state + 1);
   };
   return (
     <Player>
@@ -288,6 +296,7 @@ const mapStateToProps = state => {
   return {
     songData: songState.data,
     isFetching: songState.isFetching,
+    fetchSongError: songState.error,
     isPlaying: uiState.isPlaying,
     routing,
     tracks: tracksState.tracks,

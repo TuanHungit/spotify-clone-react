@@ -2,7 +2,8 @@ import * as TYPES from '../contanst/action-types';
 
 const initialState = {
   data: null,
-  isFetching: false
+  isFetching: false,
+  error: false
 };
 
 export default (state = initialState, action) => {
@@ -14,10 +15,11 @@ export default (state = initialState, action) => {
         ...state,
         isFetching: false,
         data: action.data,
-        isPlaying: true
+        isPlaying: true,
+        error: false
       };
     case TYPES.FETCH_SONG_FAILURE:
-      return { ...state, isFetching: false, isPlaying: false };
+      return { ...state, isFetching: false, isPlaying: false, error: true };
     default:
       return state;
   }
