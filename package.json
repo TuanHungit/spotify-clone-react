@@ -13,7 +13,8 @@
     "webpack:dev": "./node_modules/.bin/webpack-dev-server --content-base public --inline --hot --progress",
     "webpack:prod": "./node_modules/.bin/webpack --env=prod --progress --profile --colors",
     "build": "npm run webpack:prod",
-    "test": "ava --verbose"
+    "test": "ava --verbose",
+    "heroku-prebuild": "npm install --dev"
   },
   "ava": {
     "files": [
