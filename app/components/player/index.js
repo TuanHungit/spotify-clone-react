@@ -8,7 +8,7 @@ import {
   WrapperIcon,
   Icon,
   TimeSeek
-} from './styles/Player';
+} from './styles/player';
 export default function Player({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
 }
