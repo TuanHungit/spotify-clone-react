@@ -1,7 +1,0 @@
-/node_modules/*
-/app/*
-/public/*
-/.git/*
-/.gitignore
-/package.json
-

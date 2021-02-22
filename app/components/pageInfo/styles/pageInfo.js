@@ -17,6 +17,7 @@ export const Image = styled.img`
   object-fit: cover;
   -webkit-box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
   box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
+  margin-right: 20px;
 `;
 export const Content = styled.div`
   text-align: left;
