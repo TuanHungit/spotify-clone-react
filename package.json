@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "proxy": "http://localhost:5000",
+  "proxy": "https://spotify-th.herokuapp.com/",
   "scripts": {
     "start": " npm run server",
     "dev:client": "npm run webpack:dev",
