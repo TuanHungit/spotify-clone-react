@@ -8,3 +8,14 @@ $ npm run dev:server
 $ npm run dev:client
 ```
 Navigate to http://localhost:8000. The app will automatically reload if you change any of the source files
+
+### Demo Picture:
+
+## Home Page:
+![alt text](https://github.com/TuanHungit/spotify-clone-react/blob/main/demo/home.PNG?raw=true)
+## Tracks Page:
+![alt text](https://github.com/TuanHungit/spotify-clone-react/blob/main/demo/tracks.PNG?raw=true)
+## Karaoke Page:
+![alt text](https://github.com/TuanHungit/spotify-clone-react/blob/main/demo/karaoke.PNG?raw=true)
+## Queue Page:
+![alt text](https://github.com/TuanHungit/spotify-clone-react/blob/main/demo/queue.PNG?raw=true)
