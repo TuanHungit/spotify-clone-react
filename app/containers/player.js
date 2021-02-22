@@ -270,12 +270,12 @@ const PlayerContainer = ({
           />
         </Player.WrapperIcon>
 
-        <Player.Group size="40%">
+        {/* <Player.Group size="40%">
           <Player.WrapperIcon>
             <i class="fas fa-volume-up" style={{ fontSize: '20px' }}></i>
           </Player.WrapperIcon>
           <InputRange maxValue={50} minValue={0} value={50} />
-        </Player.Group>
+        </Player.Group> */}
       </Player.Group>
     </Player>
   );
